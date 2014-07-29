@@ -7,6 +7,7 @@ require 'compropago/version'
 
 # Resources
 require 'compropago/client'
+require "compropago/configuration"
 
 module Compropago
 
