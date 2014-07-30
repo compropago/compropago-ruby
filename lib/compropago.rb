@@ -1,14 +1,10 @@
 # API spec at http://compropago.com/documentacion/api
-require 'net/https'
-require 'uri'
-
 # Version
 require 'compropago/version'
-
-# Resources
-require 'compropago/client'
+require "active_rest_client"
 require "compropago/configuration"
 
 module Compropago
-
+  autoload :Base, 'compropago/base'
+  autoload :Charge, 'compropago/charge'
 end
