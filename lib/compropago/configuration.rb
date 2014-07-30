@@ -2,21 +2,23 @@ module Compropago
   # Stores runtime configuration information.
   #
   # @example Standard settings
-  #     Compropago.configure do |config|
-  #     end
-  #
-  # @see Compropago.configure
-  class << self
-    attr_accessor :configuration
+  #  Compropago.api_url = "https://api.compropago.com/v2"
+  #  Compropago.api_key = "MyToken"
+  @api_url = "https://api.compropago.com/v1"
+
+  def self.api_key
+    @api_key
   end
 
-  def self.configure
-    self.configuration ||= Configuration.new
-    self.configuration.api_url ||= "https://api.compropago.com/v1"
-    yield(configuration)
+  def self.api_url
+    @api_url
   end
 
-  class Configuration
-    attr_accessor :api_key, :api_url
+  def self.api_key=(api_key)
+    @api_key = api_key
+  end
+
+  def self.api_url=(api_url)
+    @api_url = api_url
   end
 end

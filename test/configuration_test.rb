@@ -2,10 +2,11 @@ require "test_helper"
 
 class ConfigurationTest < MiniTest::Unit::TestCase
   def test_must_set_the_conf_vars
-    Compropago.configure do |config|
-      config.api_key = "MyToken"
-    end
-    assert_equal Compropago.configuration.api_url, "https://api.compropago.com/v1"
-    assert_equal Compropago.configuration.api_key, "MyToken"
+    assert_equal Compropago.api_url, "https://api.compropago.com/v1"
+
+    Compropago.api_url = "https://api.compropago.com/v2"
+    Compropago.api_key = "MyToken"
+    assert_equal Compropago.api_url, "https://api.compropago.com/v2"
+    assert_equal Compropago.api_key, "MyToken"
   end
 end
