@@ -22,7 +22,7 @@ Or install it yourself as:
 
 We encourage you to set your API keys in an environment variable rather than hardcoding your API keys.
 
-    compropago = Compropago::Client.new(ENV['COMPROPAGO_API_KEY'])
+     Compropago.api_key = "sk_test_my_api_key"
 
 Once you have created an instance of compropago, you can call the methods described in the <a href="http://compropago.com/documentacion/api">api reference</a> on it.
 
@@ -32,32 +32,33 @@ Once you have created an instance of compropago, you can call the methods descri
 ### Create a charge
 
 Creating a charge using only the required params <code>product_price</code>, <code>product_name</code>, <code>customer_name</code>, <code>customer_email</code>, <code>payment_type</code>.
-	
-	# create_charge(product_price, product_name, customer_name, customer_email, payment_type)
 
-    compropago.create_charge(3150.0, 'iphone5s', 'Irma Sanz', 'no-replay@compropago.com', 'OXXO')
-
-Adding the optional params <code>product_id</code> and <code>image_url</code> to the request:
-
-    # create_charge(product_price, product_name, customer_name, customer_email, payment_type, product_id, image_url)
-
-    compropago.create_charge(3150.0, 'iphone5s', 'Irma Sanz', 'no-replay@email.com', 'OXXO', '5ku8g', 'image.jpg')
+```ruby
+ Compropago::Charge.create({ product_price: 10000.0,
+                             product_name: "SAMSUNG GOLD CURL",
+                             product_id: "SMGCURL1",
+                             image_url: "https://test.amazon.com/5f4373",
+                             customer_name: "Roberto Miranda",
+                             customer_email: "roberto@golazzos.com",
+                             payment_type: "OXXO"})
+```
 
 ### Verify a charge
 
 Verify a charge previously made.
 
-	# verify_charge(payment_id)
-
-    compropago.verify_charge('b75076ac-a94b-478a-945c-c2caf85be668')
+```ruby
+Compropago::Charge.find("818f2e81-226a-4ff9-88a2-81a577aec380")
+```
 
 ### SMS payment instructions
 
 Send payment instructions over SMS.
 
-	# send_payment_instructions(payment_id, customer_phone, customer_company_phone)
+```ruby
+Compropago::SMS.create(payment_id: "818f2e81-226a-4ff9-88a2-81a577aec380", customer_phone: "2221515805", customer_company_phone: "TELCEL")
+```
 
-    compropago.send_payment_instructions('b75076ac-a94b-478a-945c-c2caf85be668', '2221515805', 'TELCEL')
 
 ## Contributing
 

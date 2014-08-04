@@ -1,4 +1,4 @@
- Compropago.api_key = "sk_test_71863001136936a44"
+ Compropago.api_key = "sk_test_my_api_key"
  Compropago::Charge.find("1")
 
  Compropago::Charge.create({ product_price: 10000.0,
