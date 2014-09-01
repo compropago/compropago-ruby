@@ -1,3 +1,4 @@
+require "compropago"
  Compropago.api_key = "sk_test_my_api_key"
  Compropago::Charge.find("1")
 

@@ -7,4 +7,5 @@ require "compropago/configuration"
 module Compropago
   autoload :Base, 'compropago/base'
   autoload :Charge, 'compropago/charge'
+  autoload :SMS, 'compropago/sms'
 end
