@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ConfigurationTest < MiniTest::Unit::TestCase
+class ConfigurationTest < MiniTest::Test
   def test_must_set_the_conf_vars
     assert_equal Compropago.api_url, "https://api.compropago.com/v1"
 

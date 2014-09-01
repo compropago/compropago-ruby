@@ -6,12 +6,11 @@ $LOAD_PATH.unshift libdir unless $LOAD_PATH.include?(libdir)
 
 require "rubygems"
 require "compropago"
-require "turn"
-require "minitest/unit"
 require "minitest/autorun"
+require "minitest/unit"
 require 'webmock/minitest'
 
-class MiniTest::Unit::TestCase
+class MiniTest::Test
   def setup
   end
 end
