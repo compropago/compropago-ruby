@@ -6,7 +6,7 @@ This gem helps you integrate ComproPago's API to your ruby app.
 
 Add this line to your application's Gemfile:
 
-    gem 'compropago', '~> 0.0.2'
+    gem 'compropago', '~> 0.1.0'
 
 And then execute:
 
@@ -36,10 +36,8 @@ Creating a charge using only the required params <code>product_price</code>, <co
 ```ruby
  Compropago::Charge.create({ product_price: 10000.0,
                              product_name: "SAMSUNG GOLD CURL",
-                             product_id: "SMGCURL1",
-                             image_url: "https://test.amazon.com/5f4373",
                              customer_name: "Roberto Miranda",
-                             customer_email: "roberto@golazzos.com",
+                             customer_email: "noreply@compropago.com",
                              payment_type: "OXXO"})
 ```
 

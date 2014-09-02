@@ -2,8 +2,8 @@ module Compropago
   # Stores runtime configuration information.
   #
   # @example Standard settings
-  #  Compropago.api_url = "https://api.compropago.com/v2"
-  #  Compropago.api_key = "MyToken"aa
+  #  Compropago.api_url = "https://api.compropago.com/v1"
+  #  Compropago.api_key = "MyAPIKey"
   ActiveRestClient::Base.base_url = "https://api.compropago.com/v1"
 
   def self.api_key
