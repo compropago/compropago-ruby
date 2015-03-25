@@ -6,7 +6,7 @@ This gem helps you integrate ComproPago's API to your ruby app.
 
 Add this line to your application's Gemfile:
 
-    gem 'compropago', '~> 0.1.0'
+    gem 'compropago', '~> 0.1.1'
 
 And then execute:
 
