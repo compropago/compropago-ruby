@@ -15,7 +15,7 @@ module Compropago
   	  @base_uri = options[:base_uri]
   	end
 
-  	def create_charge(order_price, order_name, customer_name, customer_email, payment_type, product_id=nil, image_url=nil)
+  	def create_charge(order_price, order_name, customer_name, customer_email, payment_type, order_id=nil, image_url=nil)
   	  uri = URI.parse(BASE_URI+'/charges')
   	  http = Net::HTTP.new(uri.host, uri.port)
   	  http.use_ssl = true
@@ -27,7 +27,7 @@ module Compropago
   	  			     "customer_name" => customer_name,
   	  			     "customer_email" => customer_email,
   	  			     "payment_type" => payment_type,
-  	  			     "product_id" => product_id,
+  	  			     "order_id" => order_id,
   	    		     "image_url" => image_url
   	  		     }
   	  request.set_form_data(params)
