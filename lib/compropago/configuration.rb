@@ -4,7 +4,7 @@ module Compropago
   # @example Standard settings
   #  Compropago.api_url = "https://api.compropago.com/v1"
   #  Compropago.api_key = "MyAPIKey"
-  ActiveRestClient::Base.base_url = "https://api-staging-compropago.herokuapp.com"
+  ActiveRestClient::Base.base_url = "https://api-staging-compropago.herokuapp.com/v1"
 
   def self.api_key
     @api_key
