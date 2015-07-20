@@ -4,7 +4,8 @@ require 'uri'
 module Compropago
   class Client
 
-  	BASE_URI = 'https://api.compropago.com/v1'
+  	#BASE_URI = 'https://api.compropago.com/v1'
+    BASE_URI = 'https://api-staging-compropago.herokuapp.com'
 
   	def initialize(api_key='', options={})
   	  @api_key = api_key
@@ -14,15 +15,15 @@ module Compropago
   	  @base_uri = options[:base_uri]
   	end
 
-  	def create_charge(product_price, product_name, customer_name, customer_email, payment_type, product_id=nil, image_url=nil)
+  	def create_charge(order_price, order_name, customer_name, customer_email, payment_type, product_id=nil, image_url=nil)
   	  uri = URI.parse(BASE_URI+'/charges')
   	  http = Net::HTTP.new(uri.host, uri.port)
   	  http.use_ssl = true
   	  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
   	  request = Net::HTTP::Post.new(uri.request_uri)
   	  request.basic_auth @api_key, ''
-  	  params = { "product_price" => product_price,
-  	  			     "product_name" => product_name,
+  	  params = { "product_price" => order_price,
+  	  			     "product_name" => order_name,
   	  			     "customer_name" => customer_name,
   	  			     "customer_email" => customer_email,
   	  			     "payment_type" => payment_type,
