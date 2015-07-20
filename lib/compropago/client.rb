@@ -22,8 +22,8 @@ module Compropago
   	  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
   	  request = Net::HTTP::Post.new(uri.request_uri)
   	  request.basic_auth @api_key, ''
-  	  params = { "product_price" => order_price,
-  	  			     "product_name" => order_name,
+  	  params = { "order_price" => order_price,
+  	  			     "order_name" => order_name,
   	  			     "customer_name" => customer_name,
   	  			     "customer_email" => customer_email,
   	  			     "payment_type" => payment_type,
