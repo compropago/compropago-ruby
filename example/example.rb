@@ -2,8 +2,8 @@ require "compropago"
  Compropago.api_key = "sk_test_my_api_key"
  Compropago::Charge.find("1")
 
- Compropago::Charge.create({ product_price: 10000.0,
-                             product_name: "SAMSUNG GOLD CURL",
+ Compropago::Charge.create({ order_price: 10000.0,
+                             order_name: "SAMSUNG GOLD CURL",
                              customer_name: "Roberto Miranda",
                              customer_email: "noreply@compropago.com",
                              payment_type: "OXXO"})

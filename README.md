@@ -34,8 +34,8 @@ Once you have created an instance of compropago, you can call the methods descri
 Creating a charge using only the required params <code>product_price</code>, <code>product_name</code>, <code>customer_name</code>, <code>customer_email</code>, <code>payment_type</code>.
 
 ```ruby
- Compropago::Charge.create({ product_price: 10000.0,
-                             product_name: "SAMSUNG GOLD CURL",
+ Compropago::Charge.create({ order_price: 10000.0,
+                             order_name: "SAMSUNG GOLD CURL",
                              customer_name: "Roberto Miranda",
                              customer_email: "noreply@compropago.com",
                              payment_type: "OXXO"})
