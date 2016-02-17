@@ -4,8 +4,7 @@ require 'uri'
 module Compropago
   class Client
 
-  	#BASE_URI = 'https://api.compropago.com/v1'
-    BASE_URI = 'https://api-staging-compropago.herokuapp.com/v1'
+  	BASE_URI = 'https://api.compropago.com/v1'
 
   	def initialize(api_key='', options={})
   	  @api_key = api_key
