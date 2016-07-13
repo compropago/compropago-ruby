@@ -10,12 +10,15 @@ Gem::Specification.new do |s|
   s.email        = 'eduardo.aguilar@compropago.com'
   s.files        = [
       'lib/compropago.rb',
+
       'lib/compropagogem/client.rb',
       'lib/compropagogem/service.rb',
 
       'lib/compropagogem/factory/factory.rb',
+      'lib/compropagogem/factory/json/serialize_object.rb',
 
       'lib/compropagogem/models/eval_auth_info.rb',
+      'lib/compropagogem/models/provider.rb',
 
       'lib/compropagogem/tools/validations.rb'
   ]

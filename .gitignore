@@ -19,3 +19,4 @@ tmp
 # Ignore VIM files
 *.swp
 *~
+*.sh
