@@ -11,3 +11,4 @@ require 'compropagogem/tools/validations'
 
 require 'compropagogem/models/eval_auth_info'
 require 'compropagogem/models/provider'
+require 'compropagogem/models/place_order_info'

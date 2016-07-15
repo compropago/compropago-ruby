@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
       'lib/compropagogem/models/eval_auth_info.rb',
       'lib/compropagogem/models/provider.rb',
+      'lib/compropagogem/models/place_order_info.rb',
 
       'lib/compropagogem/tools/validations.rb'
   ]
