@@ -1,12 +1,48 @@
-# API spec at http://compropago.com/documentacion/api
-# Version
-require 'compropago/version'
-require "active_rest_client"
-require "compropago/configuration"
+require 'net/http'
+require 'json'
 
-module Compropago
-  autoload :Client, 'compropago/client'
-  autoload :Base, 'compropago/base'
-  autoload :Charge, 'compropago/charge'
-  autoload :SMS, 'compropago/sms'
-end
+require 'compropagogem/client'
+require 'compropagogem/service'
+
+require 'compropagogem/factory/factory'
+
+require 'compropagogem/factory/abs/cp_order_info'
+require 'compropagogem/factory/abs/fee_details'
+require 'compropagogem/factory/abs/instruction_details'
+require 'compropagogem/factory/abs/instructions'
+require 'compropagogem/factory/abs/new_order_info'
+require 'compropagogem/factory/abs/order_info'
+require 'compropagogem/factory/abs/sms_info'
+
+require 'compropagogem/factory/json/serialize_object'
+
+require 'compropagogem/factory/v10/cp_object'
+require 'compropagogem/factory/v10/cp_order_info10'
+require 'compropagogem/factory/v10/data'
+require 'compropagogem/factory/v10/fee_details10'
+require 'compropagogem/factory/v10/instruction_details10'
+require 'compropagogem/factory/v10/instructions10'
+require 'compropagogem/factory/v10/new_order_info10'
+require 'compropagogem/factory/v10/order_info10'
+require 'compropagogem/factory/v10/payment_details'
+require 'compropagogem/factory/v10/product_information'
+require 'compropagogem/factory/v10/sms_info10'
+require 'compropagogem/factory/v10/sms_payment'
+
+require 'compropagogem/factory/v11/cp_order_info11'
+require 'compropagogem/factory/v11/fee_details11'
+require 'compropagogem/factory/v11/instruction_details11'
+require 'compropagogem/factory/v11/instructions11'
+require 'compropagogem/factory/v11/new_order_info11'
+require 'compropagogem/factory/v11/order_info11'
+require 'compropagogem/factory/v11/sms_data'
+require 'compropagogem/factory/v11/sms_info11'
+require 'compropagogem/factory/v11/sms_object'
+
+require 'compropagogem/models/customer'
+require 'compropagogem/models/eval_auth_info'
+require 'compropagogem/models/place_order_info'
+require 'compropagogem/models/provider'
+require 'compropagogem/models/webhook'
+
+require 'compropagogem/tools/validations'

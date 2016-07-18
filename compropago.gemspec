@@ -1,26 +1,50 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'compropago/version'
+li = []
 
-Gem::Specification.new do |spec|
-  spec.name          = "compropago"
-  spec.version       = Compropago::VERSION
-  spec.authors       = ["Jose Gabriel"]
-  spec.email         = ["soporte@compropago.com"]
-  spec.description   = %q{Ruby gem for making calls to ComproPago API}
-  spec.summary       = %q{Ruby bindings for ComproPago}
-  spec.homepage      = "http://compropago.com"
-  spec.license       = "MIT"
+Dir.glob('./lib/*.rb').each do |archivo|
+  li.push archivo
+end
 
-  spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+Dir.glob('./lib/compropagogem/*.rb').each do |archivo|
+  li.push archivo
+end
 
-  spec.add_dependency "active_rest_client", "~> 1.0.4"
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "minitest"
-  spec.add_development_dependency "webmock", "~> 1.16.1"
+Dir.glob('./lib/compropagogem/factory/*.rb').each do |archivo|
+  li.push archivo
+end
+
+Dir.glob('./lib/compropagogem/factory/abs/*.rb').each do |archivo|
+  li.push archivo
+end
+
+Dir.glob('./lib/compropagogem/factory/v10/*.rb').each do |archivo|
+  li.push archivo
+end
+
+Dir.glob('./lib/compropagogem/factory/v11/*.rb').each do |archivo|
+  li.push archivo
+end
+
+Dir.glob('./lib/compropagogem/factory/json/*.rb').each do |archivo|
+  li.push archivo
+end
+
+Dir.glob('./lib/compropagogem/models/*.rb').each do |archivo|
+  li.push archivo
+end
+
+Dir.glob('./lib/compropagogem/tools/*.rb').each do |archivo|
+  li.push archivo
+end
+
+Gem::Specification.new do |s|
+  s.name         = 'compropago'
+  s.version      = '2.0.0'
+  s.date         = '2016-07-13'
+  s.summary      = 'ComproPago Ruby Gem'
+  s.description  = 'Gema que permite el consumo de los servicios del API de ComproPago'
+  s.authors      = ['Eduardo Aguilar']
+  s.email        = 'eduardo.aguilar@compropago.com'
+  s.files        = li
+  s.homepage     = 'https://github.com/compropago/compropago-ruby'
+  s.license      = 'Apache-2.0'
 end
