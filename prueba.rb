@@ -8,24 +8,26 @@ client = Client.new(
     false
 )
 
-puts client.get_uri
-
 begin
 
   Validations.eval_auth client
 
   puts Validations.validate_gateway client
 
-  providers = client.api.get_providers false , 15000 , true
+  puts '#####################'
+  puts '#####################'
 
-  for provider in providers
-    puts provider.name
-  end
+  providers = client.api.list_providers false , 15000 , true
+
+  puts providers
+
+  puts '#####################'
+  puts '#####################'
 
   order = PlaceOrderInfo.new(
-    '12',
+    '123',
     'M4 Style Ruby',
-    123.45,
+    1000,
     'Eduardo Aguilar',
     'eduardo.aguilar@compropago.com',
     'OXXO',
@@ -34,11 +36,54 @@ begin
     '2.0.0'
   )
 
-  puts client.api.place_order order
+  new_order = client.api.place_order order
+
+  puts new_order
 
 
-rescue Exception => e
+  puts '#####################'
+  puts '#####################'
 
-  puts "Error: #{e.message}"
+  sms_info = client.api.send_sms_instructions '5554781015' , new_order.get_id
+
+  puts sms_info
+  puts sms_info.get_type
+
+  puts '#####################'
+  puts '#####################'
+
+  webhook = client.api.create_webhook('http://asd.com')
+
+  puts webhook
+
+  puts '#####################'
+  puts '#####################'
+
+  puts client.api.update_webhook webhook.id , 'http://pruesba.com'
+
+  puts '#####################'
+  puts '#####################'
+
+  puts client.api.list_webhooks
+
+  puts '#####################'
+  puts '#####################'
+
+  puts client.api.delete_webhook webhook.id
+
+  puts '#####################'
+  puts '#####################'
+
+  puts client.api.verify_order new_order.get_id
+
+  puts '#####################'
+  puts '#####################'
+
+
+
+rescue => e
+
+  puts e.backtrace
+  raise
 
 end

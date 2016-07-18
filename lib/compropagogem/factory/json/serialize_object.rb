@@ -136,7 +136,7 @@ class SerializeObject
 
     res.id = source['id']
     res.short_id = source['short_id']
-    res.obect = source['object']
+    res.object = source['object']
     res.status = source['status']
     res.created = source['created']
     res.exp_date = source['exp_date']
