@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-sudo gem uninstall compropago-2.0.0
+
+sudo gem uninstall compropago*
 gem build compropago.gemspec
-sudo gem install compropago-2.0.0.gem
+sudo gem install compropago*.gem

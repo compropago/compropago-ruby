@@ -128,6 +128,9 @@ class Service
   end
 
 
+  # @param [String] number
+  # @param [String] id
+  # @return [SmsInfo]
   def send_sms_instructions(number, id)
     Validations.validate_gateway @client
 
