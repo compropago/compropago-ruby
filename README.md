@@ -342,5 +342,5 @@ end
 | 0.1.2   | Deprecated | [0.1.2][branch-1-0-0]  |
 | 2.0.0   | Latest     | [2.0.0][branch-latest] |
 
-[branch-1-0-0]: https://github.com/compropago/sdk-cs-net/tree/0.1.2
+[branch-1-0-0]: https://github.com/compropago/compropago-ruby/tree/v0.1.2
 [branch-latest]: https://github.com/compropago/compropago-ruby/
