@@ -63,7 +63,7 @@ sudo gem install compropago*.gem
 
 ## Documentación
 
-### Documentación ComproPago SDK C#.NET ComproPago
+### Documentación ComproPago Ruby Gem
 
 ### Documentación de ComproPago
 
