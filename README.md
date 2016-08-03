@@ -336,7 +336,7 @@ end
 ```
 
 
-### Gui de versiones
+### Guia de versiones
 | Version | Status     | Branch                 |
 |---------|------------|------------------------|
 | 0.1.2   | Deprecated | [0.1.2][branch-1-0-0]  |
