@@ -86,7 +86,9 @@ Información de Horarios y Comisiones, como Transferir tu dinero y la Seguridad 
 
 ## Guía básica de Uso
 
-Se debe tener una cuenta activa de ComproPago. [Registrarse en ComproPago](https://compropago.com)
+Se debe tener una cuenta activa de ComproPago.
+
+[Registrarse en ComproPago](https://compropago.com)
 
 ### General
 
