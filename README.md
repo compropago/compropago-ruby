@@ -43,7 +43,7 @@ Puede descargar alguna de las versiones que hemos publicado:
 O si o lo desea puede obtener el repositorio
 
 ```bash
-#repositorio en su estado actual (*puede no ser versón estable*)
+#repositorio en su estado actual (*puede no ser versión estable*)
 git clone https://github.com/compropago/sdk-cs-net.git
 ```
 
@@ -51,13 +51,13 @@ Finalizada la descarga del código de la gema descomprimir el archivo descargado
 resultante. En una terminal con los siguientes comandos:
 
 ```bash
-# Desinstalara cualquier vercion anterior del la gema
+# Desinstalará cualquier versión anterior del la gema
 sudo gem uninstall compropago*
 
-# Generacion del nuevo compilado de la gema
+# Generación del nuevo compilado de la gema
 gem build compropago.gemspec
 
-# Instalacion del nuevo compilado
+# Instalación del nuevo compilado
 sudo gem install compropago*.gem
 ```
 
@@ -120,7 +120,7 @@ client = Client.new(
 
 ### Uso Básico de la gema
 
-> Consulte la documentación de la librería Ruby de ComproPago para conocer más de sus capacidades, configuraciones y métodos.
+> Consulta la documentación de la librería Ruby de ComproPago para conocer más de sus capacidades, configuraciones y métodos.
 
 
 #### Llamados al los servicios por SDK
@@ -154,7 +154,7 @@ order = PlaceOrderInfo.new(
 )
 
 
-# Llamada al metodo 'place_order' del API para generar la orden
+# Llamada al método 'place_order' del API para generar la órden
 
 # @param [PlaceOrderInfo] order
 # @return [NewOrderInfo]
@@ -172,7 +172,7 @@ end
 
 ##### Verificar el Estatus de una orden
 
-Para verificar el estatus de una orden generada es necesario llamar al método **verify_order** que provee el atributo **api**
+Para verificar el estatus de una órden generada es necesario llamar al método **verify_order** que provee el atributo **api**
 del objeto **Client** y el cual regresa una instancia **CpOrderInfo**. Este método recibe como parámetro el ID generado por ComproPago para cada orden. Tambien puede obtener este ID desde un objeto **NewOrderInfo** accediendo al método **get_id**.
 
 ```ruby
