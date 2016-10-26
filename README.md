@@ -2,30 +2,30 @@
 
 ## Descripción
 
-La librería de `ComproPago Ruby Gem` le permite interactuar con el API de ComproPago en su aplicación.
-También cuenta con los métodos necesarios para facilitarle su desarrollo por medio de los servicios 
+La librería de `ComproPago Ruby Gem` te permite interactuar con el API de ComproPago en tu aplicación.
+También cuenta con los métodos necesarios para facilitar el desarrollo por medio de los servicios
 más utilizados (SDK).
 
-Con ComproPago puede recibir pagos en OXXO, 7Eleven y muchas tiendas más en todo México.
+Con ComproPago puedes recibir pagos en OXXO, 7Eleven y más tiendas en todo México.
 
 [Registrarse en ComproPago](https://compropago.com)
 
 ## Índice de Contenidos
 
-- [Ayuda y Soporte de ComproPago](#ayuda-y-soporte-de-compropago)
+- [Ayuda y soporte de ComproPago](#ayuda-y-soporte-de-compropago)
 - [Requerimientos](#requerimientos)
 - [Instalación ComproPago SDK](#instalación-compropago-sdk)
 - [Documentación](#documentación)
-- [Guía básica de Uso](#guía-básica-de-uso)
-- [Guía de Versiones](#guía-de-versiones)
+- [Guía básica de uso](#guía-básica-de-uso)
+- [Guía de versiones](#guía-de-versiones)
 
 
 ## Ayuda y Soporte de ComproPago
 
 - [Centro de ayuda y soporte](https://compropago.com/ayuda-y-soporte)
-- [Solicitar Integración](https://compropago.com/integracion)
-- [Guía para Empezar a usar ComproPago](https://compropago.com/ayuda-y-soporte/como-comenzar-a-usar-compropago)
-- [Información de Contacto](https://compropago.com/contacto)
+- [Solicitar integración](https://compropago.com/integracion)
+- [Guía para comenzar a utilizar ComproPago](https://compropago.com/ayuda-y-soporte/como-comenzar-a-usar-compropago)
+- [Información de contacto](https://compropago.com/contacto)
 
 ## Requerimientos
 
@@ -47,8 +47,8 @@ O si o lo desea puede obtener el repositorio
 git clone https://github.com/compropago/sdk-cs-net.git
 ```
 
-Finalizada la descarga del codigo de la gema descomprimir el archivo descargado e ingresar en la carpeta
-resultante. En una terminal correr los siguientes comandos:
+Finalizada la descarga del código de la gema descomprimir el archivo descargado e ingresar en la carpeta
+resultante. En una terminal con los siguientes comandos:
 
 ```bash
 # Desinstalara cualquier vercion anterior del la gema
@@ -73,7 +73,7 @@ ComproPago te ofrece un API tipo REST para integrar pagos en efectivo en tu come
 
 **[General](https://compropago.com/documentacion)**
 
-Información de Comisiones y Horarios, como Transferir tu dinero y la Seguridad que proporciona ComproPAgo
+Información de Horarios y Comisiones, como Transferir tu dinero y la Seguridad que proporciona ComproPAgo
 
 
 **[Herramientas](https://compropago.com/documentacion/boton-pago)**
@@ -86,11 +86,11 @@ Información de Comisiones y Horarios, como Transferir tu dinero y la Seguridad 
 
 ## Guía básica de Uso
 
-Se debe contar con una cuenta activa de ComproPago. [Registrarse en ComproPago](https://compropago.com)
+Se debe tener una cuenta activa de ComproPago. [Registrarse en ComproPago](https://compropago.com)
 
 ### General
 
-Para poder hacer uso de la librería es necesario incluir la libreria principales de la gema
+Para poder hacer uso de la librería es necesario incluir la librería principales de la gema
 
 ```ruby
 require 'compropago'
@@ -98,11 +98,11 @@ require 'compropago'
 
 ### Configuración del Cliente
 
-Para poder hacer uso de la gema y llamados al API es necesario que primero configure sus Llaves de conexión y crear 
+Para poder hacer uso de la gema y llamados al API es necesario que primero configures tus Llaves de conexión y crees
 un instancia de Client.
-*Sus llaves las encontrara en su Panel de ComproPago en el menú Configuración.*
+*Sus llaves las encontraras en su Panel de ComproPago en el menú Configuración.*
 
-[Consulte Aquí sus Llaves](https://compropago.com/panel/configuracion)
+[Consulta Aquí tus Llaves](https://compropago.com/panel/configuracion)
 
 ```ruby
 # @param string publickey     Llave publica correspondiente al modo de la tienda
@@ -125,7 +125,7 @@ client = Client.new(
 
 #### Llamados al los servicios por SDK
 
-Para poder hacer uso de los servicos de ComproPago, solo debe de llamar a los metodos contenidos en la propiedad **api**
+Para poder hacer uso de los servicios de ComproPago, solo debes llamar a los métodos contenidos en la propiedad **api**
 de la variable **client** como se muestra a continuación.
 
 
@@ -140,7 +140,7 @@ de la variable **client** como se muestra a continuación.
 # @param [Float]  order_price       Monto total de la orden
 # @param [String] customer_name     Nombre completo del cliente
 # @param [String] customer_email    Correo electronico del cliente
-# @param [String] payment_type      (default = OXXO) Valor del atributo internal_name' de un objeto 'Provider' 
+# @param [String] payment_type      (default = OXXO) Valor del atributo internal_name' de un objeto 'Provider'
 # @param [String] image_url         (optional) Url a la imagen del producto
 
 order = PlaceOrderInfo.new(
@@ -172,9 +172,8 @@ end
 
 ##### Verificar el Estatus de una orden
 
-Para verificar el estatus de una orden generada es necesario llamar al metodo **verify_order** que provee el atributo **api**
-del objeto **Client** y el cual regresa una instancia **CpOrderInfo**. este metodo recibe como parametro el ID generado por ComproPago para cada orden. Tambien puede obtener
-este ID desde un objeto **NewOrderInfo** accediendo al metodo **get_id**.
+Para verificar el estatus de una orden generada es necesario llamar al método **verify_order** que provee el atributo **api**
+del objeto **Client** y el cual regresa una instancia **CpOrderInfo**. Este método recibe como parámetro el ID generado por ComproPago para cada orden. Tambien puede obtener este ID desde un objeto **NewOrderInfo** accediendo al método **get_id**.
 
 ```ruby
 
@@ -201,9 +200,9 @@ end
 
 ##### Obtener el listado de las tiendas donde se puede realizar el Pago
 
-Para obtener el listado de Proveedores disponibles para realizar el pago de las ordenes es necesario consutar el metodo
+Para obtener el listado de Proveedores disponibles para realizar el pago de las ordenes es necesario consultar el método
 **list_providers** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia
-de tipo **Array** la cual contendra objetos de tipo **Provider**
+de tipo **Array** la cual contendraáobjetos de tipo **Provider**
 
 ```ruby
 providers = client.api.list_providers
@@ -222,21 +221,21 @@ end
 
 ##### Envio de instrucciones SMS
 
-Para realizar el el envio de las instrucciones de compra via SMS es necesario llamar al metodo **send_sms_instructions** que se
+Para realizar el el envío de las instrucciones de compra vía SMS es necesario llamar al método **send_sms_instructions** que se
 que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **SmsInfo**
 
 ```CSharp
-# Numero al cual se enviaran las instrucciones
+# Número al cual se enviaran las instrucciones
 phone_number = "55xxxxxxxx";
 
-# Id de la orden de compra de cual se enviaran las instrucciones
+# Id de la órden de compra de cual se enviaran las instrucciones
 order_id = "ch_xxxxx-xxxxx-xxxxx-xxxxx";
 
-# Llamada al metodo del API para envio de las instrucciones
+# Llamada al método del API para envío de las instrucciones
 smsinfo = client.api.send_sms_instructions phone_number , order_id
 ```
 
-###### Prototipo del metodo send_sms_instructions()
+###### Prototipo del método send_sms_instructions()
 
 ```ruby
 # @param [String] number
@@ -248,32 +247,28 @@ end
 
 #### Webhooks
 
-Los webhooks son de suma importancia para el proceso las ordenes de ComproPago, ya que estos se encargaran de recibir las notificaciones de el cambio en
-los estatus de las ordenes de compra generadas, tambien deberan contener parte de la logica de aprobacion en su tienda en linea. El proceso que siguen
-es el siguiente.
+Los webhooks son de suma importancia para el proceso las órdenes de ComproPago, ya que estos se encargaran de recibir las notificaciones de el cambio en los estatus de las órdenes de compra generadas, tambien deberán contener parte de la lógica de aprobación en su tienda en línea. El proceso es el siguiente.
 
-1. Cuando una orden cambia su estatus, nuestra plataforma le notificara a cada una de las rutas registradas, dicho cambio con la informacion de la orden
-   modificada en formato JSON
-2. Debera de recuperar este JSON en una cadena de texto para posterior mente convertirla a un objeto de todpo **CpOrderInfo** haciendo uso de la clase Factory
-   que proporciona el SDK de la siguiente forma:
+1. Cuando una órden cambia su estatus, nuestra plataforma le notificará a cada una de las rutas registradas, dicho cambio con la información de la orden modificada en formato JSON.
+2. Deberá recuperar este JSON en una cadena de texto para posteriormente convertirla a un objeto de tipo **CpOrderInfo** haciendo uso de la clase Factory que proporciona el SDK de la siguiente forma:
 
 ```ruby
 info = Factory.cp_order_info JSON.parse(cadena_obtenida)
 ```
 
-3. Generar la logica de aprovacion correspondiente al estatus de la orden.
+3. Generar la lógica de aprobación correspondiente al estatus de la órden.
 
 ##### Crear un nuevo Webhook
 
-Para crear un nuevo Webhook en la cuenta, se debe de llamar al metodo **create_webhook** que se encuentra alojado en el atributo **api** del objeto **Client**
-y el cual regresa una instancia de tipo **Webhook**
+Para crear un nuevo Webhook en la cuenta, se debe de llamar al método **create_webhook** que se encuentra alojado en el atributo **api**
+del objeto **Client** y el cual regresa una instancia de tipo **Webhook**
 
 ```ruby
 # Se pasa como paramtro la URL al webhook
 webhook = client.api.create_webhook 'http://sitio.com/webhook'
 ```
 
-###### Prototipo del metodo create_webhook()
+###### Prototipo del método create_webhook()
 
 ```ruby
 # @param [String] url
@@ -283,14 +278,13 @@ def create_webhook(url)
 
 ##### Actualizar un Webhook
 
-Para actualizar la url de un webhoo, se debe de llamar al metodo **update_webhook** que se encuentra alojado en el atributo **api** del objeto **Client**
-y el cual regresa una instancia de tipo **Webhook**
+Para actualizar la url de un webhook, se debe de llamar al método **update_webhook** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **Webhook**
 
 ```ruby
 updated_webhook = client.api.update_webhook(webhook.get_id, 'http://sitio.com/nuevo_webhook');
 ```
 
-###### Prototipo del metodo update_webhook()
+###### Prototipo del método update_webhook()
 
 ```ruby
 # @param [String] url
@@ -302,14 +296,13 @@ end
 
 ##### Eliminar un Webhook
 
-Para eliminar un webhook, se debe de llamar al metodo **delete_webhook** que se encuentra alojado en el atributo **api** del objeto **Client**
-y el cual regresa una instancia de tipo **Webhook**
+Para eliminar un webhook, se debe de llamar al método **delete_webhook** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **Webhook**
 
 ```ruby
 deleted_webhook = client.api.delete_webhook webhook.get_id
 ```
 
-###### Prototipo del metodo delete_webhook()
+###### Prototipo del método delete_webhook()
 
 ```ruby
 # @param [String] id
@@ -320,8 +313,7 @@ end
 
 ##### Obtener listado de Webhooks registrados
 
-Para obtener la lista de webhooks registrados den una cuenta, se debe de llamar al metodo **list_webhook** que se encuentra alojado en el atributo **api**
-del objeto **Client** y el cual regresa una instancia de tipo **Array** la cual contiene objetos de tipo **Webhook**
+Para obtener la lista de webhooks registrados en una cuenta, se debe de llamar al método **list_webhook** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **Array** la cual contiene objetos de tipo **Webhook**
 
 ```CSharp
 var updateWebhook = client.api.getWebhooks();
