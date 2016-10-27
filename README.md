@@ -36,18 +36,18 @@ Con ComproPago puedes recibir pagos en OXXO, 7Eleven y más tiendas en todo Méx
 
 ### Instalación por GitHub
 
-Puede descargar alguna de las versiones que hemos publicado:
+Puedes descargar alguna de las versiones que hemos publicado:
 
 - [Consultar Versiones Publicadas en GitHub](https://github.com/compropago/compropago-ruby/releases)
 
-O si o lo desea puede obtener el repositorio
+O si lo deseas puedes obtener el repositorio
 
 ```bash
 #repositorio en su estado actual (*puede no ser versión estable*)
 git clone https://github.com/compropago/sdk-cs-net.git
 ```
 
-Finalizada la descarga del código de la gema descomprimir el archivo descargado e ingresar en la carpeta
+Finalizada la descarga del código de la gema descomprime el archivo descargado e ingresa en la carpeta
 resultante. En una terminal con los siguientes comandos:
 
 ```bash
