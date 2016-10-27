@@ -100,9 +100,9 @@ require 'compropago'
 
 ### Configuración del Cliente
 
-Para poder hacer uso de la gema y llamados al API es necesario que primero configures tus Llaves de conexión y crees
+Para hacer uso de la gema y llamados al API es necesario que primero configures tus Llaves de conexión y crees
 un instancia de Client.
-*Sus llaves las encontraras en su Panel de ComproPago en el menú Configuración.*
+*Tus llaves las encontraras en su Panel de ComproPago en el menú Configuración.*
 
 [Consulta Aquí tus Llaves](https://compropago.com/panel/configuracion)
 
@@ -163,7 +163,7 @@ order = PlaceOrderInfo.new(
 new_order = client.api.place_order order
 ```
 
-###### Prototipo del metodo place_order()
+###### Prototipo del método place_order()
 
 ```ruby
 # @param [PlaceOrderInfo] info
@@ -190,7 +190,7 @@ order_id = new_order.get_id
 info = client.api.verify_order order_id
 ```
 
-###### Prototipo del metodo verify_order()
+###### Prototipo del método verify_order()
 
 ```ruby
 # @param [String] id
@@ -204,7 +204,7 @@ end
 
 Para obtener el listado de Proveedores disponibles para realizar el pago de las ordenes es necesario consultar el método
 **list_providers** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia
-de tipo **Array** la cual contendraáobjetos de tipo **Provider**
+de tipo **Array** la cual contendrá objetos de tipo **Provider**
 
 ```ruby
 providers = client.api.list_providers
@@ -221,7 +221,7 @@ def list_providers(auth = false, limit = 0.0, fetch = false)
 end
 ```
 
-##### Envio de instrucciones SMS
+##### Envío de instrucciones SMS
 
 Para realizar el el envío de las instrucciones de compra vía SMS es necesario llamar al método **send_sms_instructions** que se
 que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **SmsInfo**
@@ -249,7 +249,7 @@ end
 
 #### Webhooks
 
-Los webhooks son de suma importancia para el proceso las órdenes de ComproPago, ya que estos se encargaran de recibir las notificaciones de el cambio en los estatus de las órdenes de compra generadas, tambien deberán contener parte de la lógica de aprobación en su tienda en línea. El proceso es el siguiente.
+Los webhooks son de suma importancia para el proceso las órdenes de ComproPago, ya que ellos se encargaran de recibir las notificaciones del cambio en los estatus de las órdenes de compra generadas, tambien deberán contener parte de la lógica de aprobación en su tienda en línea. El proceso es el siguiente:
 
 1. Cuando una órden cambia su estatus, nuestra plataforma le notificará a cada una de las rutas registradas, dicho cambio con la información de la orden modificada en formato JSON.
 2. Deberá recuperar este JSON en una cadena de texto para posteriormente convertirla a un objeto de tipo **CpOrderInfo** haciendo uso de la clase Factory que proporciona el SDK de la siguiente forma:
@@ -321,7 +321,7 @@ Para obtener la lista de webhooks registrados en una cuenta, se debe de llamar a
 var updateWebhook = client.api.getWebhooks();
 ```
 
-###### Prototipo del metodo list_webhook()
+###### Prototipo del método list_webhook()
 
 ```CSharp
 # @return [Array]
@@ -330,7 +330,7 @@ end
 ```
 
 
-### Guia de versiones
+### Guía de versiones
 | Version | Status     | Branch                 |
 |---------|------------|------------------------|
 | 0.1.2   | Deprecated | [0.1.2][branch-1-0-0]  |
