@@ -44,7 +44,7 @@ O si lo deseas puedes obtener el repositorio
 
 ```bash
 #repositorio en su estado actual (*puede no ser versión estable*)
-git clone https://github.com/compropago/sdk-cs-net.git
+git clone https://github.com/compropago/compropago-ruby.git
 ```
 
 Finalizada la descarga del código de la gema descomprime el archivo descargado e ingresa en la carpeta
