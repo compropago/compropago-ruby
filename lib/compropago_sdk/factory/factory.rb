@@ -47,6 +47,7 @@ class Factory
         data.each do |webhook|
           aux.push Serialize::webhook(webhook)
         end
+        return aux
       else
         raise 'Object not in factory.'
     end

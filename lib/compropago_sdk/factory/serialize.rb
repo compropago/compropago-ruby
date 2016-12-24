@@ -5,16 +5,16 @@ class Serialize
       return PlaceOrderInfo.new(nil, nil, nil, nil, nil)
     else
       return PlaceOrderInfo.new(
-          data['order_id'],
-          data['order_name'],
-          data['order_price'],
-          data['customer_name'],
-          data['cystomer_email'],
-          data['payment_type'] ? data['payment_type'] : 'OXXO',
-          data['currency'] ? data['currency'] : 'MXN',
-          data['image_url'] ? data['image_url'] : '',
-          data['app_client_name'] ? data['app_client_name'] : 'sdk-ruby',
-          data['app_client_version'] ? data['app_client_version'] : CpConfigSdk::VERSION,
+          data[:order_id],
+          data[:order_name],
+          data[:order_price],
+          data[:customer_name],
+          data[:customer_email],
+          data[:payment_type] ? data[:payment_type] : 'OXXO',
+          data[:currency] ? data[:currency] : 'MXN',
+          data[:image_url] ? data[:image_url] : '',
+          data[:app_client_name] ? data[:app_client_name] : 'sdk-ruby',
+          data[:app_client_version] ? data[:app_client_version] : CpConfigSdk::VERSION,
       )
     end
   end
@@ -147,7 +147,7 @@ class Serialize
     if data.nil?
       return NewOrderInfo.new
     else
-      obj = NewOrderInfo()
+      obj = NewOrderInfo.new
 
       obj.id = data['id']
       obj.short_id = data['short_id']
