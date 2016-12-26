@@ -20,7 +20,6 @@ class MyTest < MiniTest::Unit::TestCase
         customer_name: 'Eduardo Aguilar',
         customer_email: 'eduardo.aguilar@compropago.com'
     }
-    @webhook_id = ''
   end
 
   def test_create_client
@@ -182,7 +181,19 @@ class MyTest < MiniTest::Unit::TestCase
       obj = Client.new @publickey, @privatekey, @mode
       webhook = obj.api.create_webhook 'http://misitio.com/webhook/'
 
-      @webhook_id = webhook.id
+      res = webhook.is_a? Webhook
+    rescue => ex
+      puts 'Eerror: '+ex.message
+    end
+    assert res
+  end
+
+  def test_update_webhook
+    res = false
+    begin
+      obj = Client.new @publickey, @privatekey, @mode
+      webhook = obj.api.create_webhook 'http://misitio.com/webhook/'
+      webhook = obj.api.update_webhook webhook.id, 'http://misitio.com/webhook/dos'
 
       res = webhook.is_a? Webhook
     rescue => ex
@@ -191,5 +202,18 @@ class MyTest < MiniTest::Unit::TestCase
     assert res
   end
 
+  def test_delete_webhook
+    res = false
+    begin
+      obj = Client.new @publickey, @privatekey, @mode
+      webhook = obj.api.create_webhook 'http://misitio.com/webhook/dos'
+      webhook = obj.api.delete_webhook webhook.id
+
+      res = webhook.is_a? Webhook
+    rescue => ex
+      puts 'Eerror: '+ex.message
+    end
+    assert res
+  end
 
 end

@@ -31,7 +31,7 @@ class Request
     http = Http.new url
     http.set_auth auth
     http.set_method 'POST'
-    http.set_data data
+    http.set_data data unless data.nil?
     http.set_extra_headers headers
 
     response = http.execute_request
@@ -45,7 +45,7 @@ class Request
     http = Http.new url
     http.set_auth auth
     http.set_method 'PUT'
-    http.set_data data
+    http.set_data data unless data.nil?
     http.set_extra_headers headers
 
     response = http.execute_request
@@ -59,7 +59,7 @@ class Request
     http = Http.new url
     http.set_auth auth
     http.set_method 'DELETE'
-    http.set_data data
+    http.set_data data unless data.nil?
     http.set_extra_headers headers
 
     response = http.execute_request

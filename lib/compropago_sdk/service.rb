@@ -96,7 +96,7 @@ class Service
 
     params = {url: new_url}
 
-    response = Request::post(
+    response = Request::put(
         @client.deploy_uri+'webhooks/stores/'+webhook_id+'/',
         params,
         user: @client.get_user, pass: @client.get_pass
@@ -109,7 +109,7 @@ class Service
     Validations::validate_gateway @client
 
     response = Request::delete(
-        @client.deploy_uri+'webhooks/stores/'+webhook_id+'/',
+        @client.deploy_uri+'webhooks/stores/'+webhook_id,
         nil,
         user: @client.get_user, pass: @client.get_pass
     )
