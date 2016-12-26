@@ -1,12 +1,12 @@
-# ComproPago Ruby Gem v2.0.0
+# ComproPago Ruby SDK
 
 ## Descripción
 
-La librería de `ComproPago Ruby Gem` te permite interactuar con el API de ComproPago en tu aplicación.
+La gema de `ComproPago Ruby SDK` le permite interactuar con el API de ComproPago en su aplicación.
 También cuenta con los métodos necesarios para facilitar el desarrollo por medio de los servicios
 más utilizados (SDK).
 
-Con ComproPago puedes recibir pagos en OXXO, 7Eleven y más tiendas en todo México.
+Con ComproPago puede recibir pagos en OXXO, 7Eleven y más tiendas en todo México.
 
 [Registrarse en ComproPago](https://compropago.com)
 
@@ -30,9 +30,24 @@ Con ComproPago puedes recibir pagos en OXXO, 7Eleven y más tiendas en todo Méx
 ## Requerimientos
 
 * Ruby Gems
+* Ruby >= 1.9
 
 
 ## Instalación ComproPago Ruby Gem
+
+
+### Instalacion por *rubygems.org*
+Puede instalar directamente la gema con el comando siguiente:
+
+```bash
+gem install compropago_sdk
+```
+
+O puede optar por agregarlo a su lista de dependencias dentro de su archivo *Gemfile* de la siguiente forma:
+```ruby
+gem 'compropago_sdk'
+```
+
 
 ### Instalación por GitHub
 
@@ -95,7 +110,7 @@ Se debe tener una cuenta activa de ComproPago.
 Para poder hacer uso de la librería es necesario incluir la librería principales de la gema
 
 ```ruby
-require 'compropago'
+require 'compropago_sdk'
 ```
 
 ### Configuración del Cliente
@@ -110,13 +125,11 @@ un instancia de Client.
 # @param string publickey     Llave publica correspondiente al modo de la tienda
 # @param string privatekey    Llave privada correspondiente al modo de la tienda
 # @param bool   live          Modo de la tienda (false = Test | true = Live)
-# @param string contained     (optional) App User agent
 
 client = Client.new(
     'pk_test_5989d8209974e2d62',  # publickey
     'sk_test_6ff4e982253c44c42',  # privatekey
-    false,                        # live
-    nil                           # contaiden
+    false                         # live
 )
 ```
 
@@ -137,23 +150,16 @@ de la variable **client** como se muestra a continuación.
 
 
 ```ruby
-# @param [String] order_id          Id de la orden
-# @param [String] order_name        Nombre del producto o productos de la orden
-# @param [Float]  order_price       Monto total de la orden
-# @param [String] customer_name     Nombre completo del cliente
-# @param [String] customer_email    Correo electronico del cliente
-# @param [String] payment_type      (default = OXXO) Valor del atributo internal_name' de un objeto 'Provider'
-# @param [String] image_url         (optional) Url a la imagen del producto
 
-order = PlaceOrderInfo.new(
-    '123',                                # order_id
-    'M4 Style Ruby',                      # order_name
-    1000,                                 # order_price
-    'Eduardo Aguilar',                    # customer_name
-    'eduardo.aguilar@compropago.com',     # customer_email
-    'OXXO',                               # payment_type
-    nil                                   # image_url
-)
+order_info = {
+    order_id: 123,
+    order_name: 'M4 unit ruby',
+    order_price: 123.45,
+    customer_name: 'Eduardo Aguilar',
+    customer_email: 'eduardo.aguilar@compropago.com'
+}
+
+order = Factory::get_instance_of 'PlaceOrderInfo', order_info
 
 
 # Llamada al método 'place_order' del API para generar la órden
@@ -175,7 +181,9 @@ end
 ##### Verificar el Estatus de una orden
 
 Para verificar el estatus de una órden generada es necesario llamar al método **verify_order** que provee el atributo **api**
-del objeto **Client** y el cual regresa una instancia **CpOrderInfo**. Este método recibe como parámetro el ID generado por ComproPago para cada orden. Tambien puede obtener este ID desde un objeto **NewOrderInfo** accediendo al método **get_id**.
+del objeto **Client** y el cual regresa una instancia **CpOrderInfo**. Este método recibe como parámetro el ID generado 
+por ComproPago para cada orden. Tambien puede obtener este ID desde un objeto **NewOrderInfo** accediendo al
+atributo **id**.
 
 ```ruby
 
@@ -183,7 +191,7 @@ del objeto **Client** y el cual regresa una instancia **CpOrderInfo**. Este mét
 order_id = "ch_xxxx_xxx_xxx_xxxx";
 
 # U obtenerlo de un objetdo NewOrderInfo
-order_id = new_order.get_id
+order_id = new_order.id
 
 
 # Se manda llamar al metodo del API para recuperar la informacion de la orden
@@ -217,7 +225,7 @@ providers = client.api.list_providers
 # @param [Float] limit
 # @param [Bolean] fetch
 # @return [Array]
-def list_providers(auth = false, limit = 0.0, fetch = false)
+def list_providers(auth = false, limit = 0)
 end
 ```
 
@@ -255,7 +263,7 @@ Los webhooks son de suma importancia para el proceso las órdenes de ComproPago,
 2. Deberá recuperar este JSON en una cadena de texto para posteriormente convertirla a un objeto de tipo **CpOrderInfo** haciendo uso de la clase Factory que proporciona el SDK de la siguiente forma:
 
 ```ruby
-info = Factory.cp_order_info JSON.parse(cadena_obtenida)
+info = Factory.get_instance_of 'CpOrderInfo', cadena_obtenida
 ```
 
 3. Generar la lógica de aprobación correspondiente al estatus de la órden.
@@ -276,6 +284,7 @@ webhook = client.api.create_webhook 'http://sitio.com/webhook'
 # @param [String] url
 # @return [Webhook]
 def create_webhook(url)
+end
 ```
 
 ##### Actualizar un Webhook
@@ -283,7 +292,7 @@ def create_webhook(url)
 Para actualizar la url de un webhook, se debe de llamar al método **update_webhook** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **Webhook**
 
 ```ruby
-updated_webhook = client.api.update_webhook(webhook.get_id, 'http://sitio.com/nuevo_webhook');
+updated_webhook = client.api.update_webhook webhook.id, 'http://sitio.com/nuevo_webhook'
 ```
 
 ###### Prototipo del método update_webhook()
@@ -301,7 +310,7 @@ end
 Para eliminar un webhook, se debe de llamar al método **delete_webhook** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **Webhook**
 
 ```ruby
-deleted_webhook = client.api.delete_webhook webhook.get_id
+deleted_webhook = client.api.delete_webhook webhook.id
 ```
 
 ###### Prototipo del método delete_webhook()
@@ -317,24 +326,16 @@ end
 
 Para obtener la lista de webhooks registrados en una cuenta, se debe de llamar al método **list_webhook** que se encuentra alojado en el atributo **api** del objeto **Client** y el cual regresa una instancia de tipo **Array** la cual contiene objetos de tipo **Webhook**
 
-```CSharp
-var updateWebhook = client.api.getWebhooks();
+```ruby
+webhooks = client.api.list_webhooks
 ```
 
 ###### Prototipo del método list_webhook()
 
-```CSharp
+```ruby
 # @return [Array]
 def list_webhooks
 end
 ```
 
 
-### Guía de versiones
-| Version | Status     | Branch                 |
-|---------|------------|------------------------|
-| 0.1.2   | Deprecated | [0.1.2][branch-1-0-0]  |
-| 2.0.0   | Latest     | [2.0.0][branch-latest] |
-
-[branch-1-0-0]: https://github.com/compropago/compropago-ruby/tree/v0.1.2
-[branch-latest]: https://github.com/compropago/compropago-ruby/
