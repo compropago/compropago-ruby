@@ -1,12 +1,12 @@
-# ComproPago Ruby Gem v2.0.0
+# ComproPago Ruby SDK
 
 ## Descripción
 
-La librería de `ComproPago Ruby Gem` te permite interactuar con el API de ComproPago en tu aplicación.
+La gema de `ComproPago Ruby SDK` le permite interactuar con el API de ComproPago en su aplicación.
 También cuenta con los métodos necesarios para facilitar el desarrollo por medio de los servicios
 más utilizados (SDK).
 
-Con ComproPago puedes recibir pagos en OXXO, 7Eleven y más tiendas en todo México.
+Con ComproPago puede recibir pagos en OXXO, 7Eleven y más tiendas en todo México.
 
 [Registrarse en ComproPago](https://compropago.com)
 
@@ -30,6 +30,7 @@ Con ComproPago puedes recibir pagos en OXXO, 7Eleven y más tiendas en todo Méx
 ## Requerimientos
 
 * Ruby Gems
+* Ruby >= 1.9
 
 
 ## Instalación ComproPago Ruby Gem
