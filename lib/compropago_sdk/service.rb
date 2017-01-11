@@ -4,9 +4,8 @@ class Service
     @client = client
   end
 
-  def list_providers(auth=false, limit=0)
+  def list_providers(auth=false, limit=0, currency='MXN')
     if auth
-      Validations::validate_gateway @client
       uri = @client.deploy_uri+'providers/'
       keys = {user: @client.get_user, pass: @client.get_pass}
     else
@@ -18,14 +17,16 @@ class Service
       uri = uri+'?order_total='+limit.to_s
     end
 
+    if limit > 0 && !currency.nil? && currency != 'MXN'
+      uri = uri+'&currency='+currency
+    end
+
     response = Request::get(uri, keys)
 
     Factory::get_instance_of 'ListProviders', response
   end
 
   def verify_order(order_id)
-    Validations::validate_gateway @client
-
     response = Request::get(
         @client.deploy_uri+'charges/'+order_id+'/',
         user: @client.get_user, pass: @client.get_pass
@@ -38,8 +39,6 @@ class Service
     unless order.is_a?(PlaceOrderInfo)
       raise 'Order object is not valid'
     end
-
-    Validations::validate_gateway @client
 
     params = {
         order_id: order.order_id,
@@ -64,8 +63,6 @@ class Service
   end
 
   def send_sms_instructions(number, order_id)
-    Validations::validate_gateway @client
-
     params = {customer_phone: number}
 
     response = Request::post(
@@ -78,8 +75,6 @@ class Service
   end
 
   def create_webhook(url)
-    Validations::validate_gateway @client
-
     params = {url: url}
 
     response = Request::post(
@@ -92,8 +87,6 @@ class Service
   end
 
   def update_webhook(webhook_id, new_url)
-    Validations::validate_gateway @client
-
     params = {url: new_url}
 
     response = Request::put(
@@ -106,8 +99,6 @@ class Service
   end
 
   def delete_webhook(webhook_id)
-    Validations::validate_gateway @client
-
     response = Request::delete(
         @client.deploy_uri+'webhooks/stores/'+webhook_id,
         nil,
@@ -118,8 +109,6 @@ class Service
   end
 
   def list_webhooks
-    Validations::validate_gateway @client
-
     response = Request::get(
         @client.deploy_uri+'webhooks/stores/',
         user: @client.get_user, pass: @client.get_pass
