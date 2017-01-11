@@ -116,6 +116,26 @@ class MyTest < MiniTest::Unit::TestCase
     assert res
   end
 
+  def test_providers_currency
+    res = true
+    begin
+      obj = Client.new @publickey, @privatekey, @mode
+      provs = obj.api.list_providers true, 700, 'USD'
+
+      provs.each do |prov|
+        if prov.transaction_limit < 15000
+          res = false
+          break
+        end
+      end
+    rescue => ex
+      puts '====>> '+ex.message
+      res = false
+    end
+
+    assert res
+  end
+
   def test_service_place_order
     res = false
     begin

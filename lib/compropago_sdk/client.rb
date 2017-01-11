@@ -24,8 +24,4 @@ class Client
     @publickey
   end
 
-  def get_full_auth
-    @privatekey+':'+@publickey
-  end
-
 end
