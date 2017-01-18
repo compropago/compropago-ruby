@@ -12,7 +12,7 @@ Dir.glob('./lib/compropago_sdk/tools/*.rb').each do |archivo| li.push archivo en
 
 Gem::Specification.new do |spec|
   spec.name          = 'compropago_sdk'
-  spec.version       = '3.0.1'
+  spec.version       = '3.0.2'
   spec.authors       = ['Eduardo Aguilar']
   spec.email         = ['eduardo.aguilar@compropago.com']
 

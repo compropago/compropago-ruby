@@ -48,7 +48,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert res
   end
 
-  def test_service_providers
+  def test_providers
     res = false
     begin
       obj = Client.new @publickey, @privatekey, @mode
@@ -62,7 +62,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert res
   end
 
-  def test_service_providers_limit
+  def test_providers_limit
     res = true
     begin
       obj = Client.new @publickey, @privatekey, @mode
@@ -82,7 +82,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert res
   end
 
-  def test_service_providers_auth
+  def test_providers_auth
     res = false
     begin
       obj = Client.new @publickey, @privatekey, @mode
@@ -96,7 +96,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert res
   end
 
-  def test_service_providers_auth_limit
+  def test_providers_auth_limit
     res = true
     begin
       obj = Client.new @publickey, @privatekey, @mode
@@ -136,7 +136,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert res
   end
 
-  def test_service_place_order
+  def test_place_order
     res = false
     begin
       obj = Client.new @publickey, @privatekey, @mode
@@ -144,6 +144,24 @@ class MyTest < MiniTest::Unit::TestCase
       response = obj.api.place_order order
 
       res = response.is_a? NewOrderInfo
+    rescue => ex
+      puts '====>> '+ex.message
+    end
+    assert res
+  end
+
+  def test_place_order_expdate
+    res = false
+    begin
+      obj = Client.new @publickey, @privatekey, @mode
+      time = Time.now.to_i + (6 * 60 * 60)
+
+      @order_info[:expiration_time] = time
+
+      order = Factory::get_instance_of 'PlaceOrderInfo', @order_info
+      response = obj.api.place_order order
+
+      res = response.is_a?(NewOrderInfo) && (time == response.exp_date)
     rescue => ex
       puts '====>> '+ex.message
     end

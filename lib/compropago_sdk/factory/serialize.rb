@@ -12,6 +12,7 @@ class Serialize
           data[:customer_email],
           data[:payment_type] ? data[:payment_type] : 'OXXO',
           data[:currency] ? data[:currency] : 'MXN',
+          data[:expiration_time] ? data[:expiration_time] : nil,
           data[:image_url] ? data[:image_url] : '',
           data[:app_client_name] ? data[:app_client_name] : 'sdk-ruby',
           data[:app_client_version] ? data[:app_client_version] : CpConfigSdk::VERSION,
