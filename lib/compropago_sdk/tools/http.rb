@@ -60,7 +60,10 @@ class Http
 
     if @auth && @auth.is_a?(Hash)
       req.basic_auth @auth[:user], @auth[:pass]
+      #puts @auth.to_json
     end
+
+    #puts @data
 
     req.body = @data
 

@@ -7,6 +7,7 @@ class PlaceOrderInfo
   attr_accessor :customer_email
   attr_accessor :payment_type
   attr_accessor :currency
+  attr_accessor :expiration_time
   attr_accessor :image_url
   attr_accessor :app_client_name
   attr_accessor :app_client_version
@@ -19,6 +20,7 @@ class PlaceOrderInfo
     customer_email,
     payment_type='OXXO',
     currency='MXN',
+    expiration_time=nil,
     image_url='',
     app_client_name='sdk-ruby',
     app_client_version=CpConfigSdk::VERSION
@@ -30,6 +32,7 @@ class PlaceOrderInfo
     @customer_email = customer_email
     @payment_type = payment_type
     @currency = currency
+    @expiration_time = expiration_time
     @image_url = image_url
     @app_client_name = app_client_name
     @app_client_version = app_client_version

@@ -41,16 +41,17 @@ class Service
     end
 
     params = {
-        order_id: order.order_id,
-        order_name: order.order_name,
-        order_price: order.order_price,
-        customer_name: order.customer_name,
-        customer_email: order.customer_email,
-        payment_type: order.payment_type,
-        currency: order.currency,
-        image_url: order.image_url,
-        app_client_name: order.app_client_name,
-        app_client_version: order.app_client_version
+        :order_id => order.order_id,
+        :order_name => order.order_name,
+        :order_price => order.order_price,
+        :customer_name => order.customer_name,
+        :customer_email => order.customer_email,
+        :payment_type => order.payment_type,
+        :currency => order.currency,
+        :expiration_time => order.expiration_time,
+        :image_url => order.image_url,
+        :app_client_name => order.app_client_name,
+        :app_client_version => order.app_client_version
     }
 
     response = Request::post(
