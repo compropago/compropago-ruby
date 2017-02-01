@@ -15,7 +15,7 @@ class Serialize
           data[:expiration_time] ? data[:expiration_time] : nil,
           data[:image_url] ? data[:image_url] : '',
           data[:app_client_name] ? data[:app_client_name] : 'sdk-ruby',
-          data[:app_client_version] ? data[:app_client_version] : CpConfigSdk::VERSION,
+          data[:app_client_version] ? data[:app_client_version] : Client::VERSION,
       )
     end
   end
@@ -192,6 +192,7 @@ class Serialize
 
       obj.name = data['name']
       obj.store_image = data['store_image']
+      obj.availability = data['availability']
       obj.is_active = data['is_active']
       obj.internal_name = data['internal_name']
       obj.image_small = data['image_small']

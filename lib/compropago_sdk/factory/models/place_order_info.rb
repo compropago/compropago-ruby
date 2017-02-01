@@ -23,7 +23,7 @@ class PlaceOrderInfo
     expiration_time=nil,
     image_url='',
     app_client_name='sdk-ruby',
-    app_client_version=CpConfigSdk::VERSION
+    app_client_version=nil
   )
     @order_id = order_id
     @order_name = order_name
@@ -35,7 +35,12 @@ class PlaceOrderInfo
     @expiration_time = expiration_time
     @image_url = image_url
     @app_client_name = app_client_name
-    @app_client_version = app_client_version
+
+    if app_client_version.nil?
+      @app_client_version = Client::VERSION
+    else
+      @app_client_version = app_client_version
+    end
   end
 
 end

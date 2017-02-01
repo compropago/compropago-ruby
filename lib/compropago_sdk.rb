@@ -4,7 +4,6 @@ require 'net/http'
 require 'json'
 require 'base64'
 
-require 'compropago_sdk/cp_config_sdk'
 require 'compropago_sdk/client'
 require 'compropago_sdk/service'
 
