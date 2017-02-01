@@ -1,5 +1,10 @@
 class Client
 
+  API_LIVE_URI = 'https://api.compropago.com/v1/'
+  API_SANDBOX_URI = 'https://api.compropago.com/v1/'
+
+  VERSION = '3.0.3'
+
   attr_accessor :publickey, :privatekey, :live, :deploy_uri, :api
 
   def initialize(publickey, privatekey, live)
@@ -8,9 +13,9 @@ class Client
     @live = live
 
     if live
-      @deploy_uri = CpConfigSdk::API_LIVE_URI
+      @deploy_uri = API_LIVE_URI
     else
-      @deploy_uri = CpConfigSdk::API_SANDBOX_URI
+      @deploy_uri = API_SANDBOX_URI
     end
 
     @api = Service.new self

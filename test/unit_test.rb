@@ -66,41 +66,7 @@ class MyTest < MiniTest::Unit::TestCase
     res = true
     begin
       obj = Client.new @publickey, @privatekey, @mode
-      provs = obj.api.list_providers false, @limit
-
-      provs.each do |prov|
-        if prov.transaction_limit < @limit
-          res = false
-          break
-        end
-      end
-    rescue => ex
-      puts '====>>'+ex.message
-      res = false
-    end
-
-    assert res
-  end
-
-  def test_providers_auth
-    res = false
-    begin
-      obj = Client.new @publickey, @privatekey, @mode
-      provs = obj.api.list_providers true
-
-      res = (provs.is_a?(Array) && provs[0].is_a?(Provider))
-    rescue => ex
-      puts '====>>'+ex.message
-    end
-
-    assert res
-  end
-
-  def test_providers_auth_limit
-    res = true
-    begin
-      obj = Client.new @publickey, @privatekey, @mode
-      provs = obj.api.list_providers true, @limit
+      provs = obj.api.list_providers @limit
 
       provs.each do |prov|
         if prov.transaction_limit < @limit
@@ -120,10 +86,10 @@ class MyTest < MiniTest::Unit::TestCase
     res = true
     begin
       obj = Client.new @publickey, @privatekey, @mode
-      provs = obj.api.list_providers true, 700, 'USD'
+      provs = obj.api.list_providers 700, 'USD'
 
       provs.each do |prov|
-        if prov.transaction_limit < 15000
+        if prov.transaction_limit < @limit
           res = false
           break
         end

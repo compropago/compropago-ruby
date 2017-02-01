@@ -2,6 +2,7 @@ class Provider
 
   attr_accessor :name
   attr_accessor :store_image
+  attr_accessor :availability
   attr_accessor :is_active
   attr_accessor :internal_name
   attr_accessor :image_small

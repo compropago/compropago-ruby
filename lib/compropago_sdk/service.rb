@@ -4,14 +4,12 @@ class Service
     @client = client
   end
 
-  def list_providers(auth=false, limit=0, currency='MXN')
-    if auth
-      uri = @client.deploy_uri+'providers/'
-      keys = {user: @client.get_user, pass: @client.get_pass}
-    else
-      uri = @client.deploy_uri+'providers/true/'
-      keys = nil
-    end
+  def get_auth
+    { :user => @client.get_user, :pass => @client.get_pass }
+  end
+
+  def list_providers(limit=0, currency='MXN')
+    uri = @client.deploy_uri+'providers/'
 
     if limit > 0
       uri = uri+'?order_total='+limit.to_s
@@ -21,16 +19,13 @@ class Service
       uri = uri+'&currency='+currency
     end
 
-    response = Request::get(uri, keys)
+    response = Request::get(uri, get_auth)
 
     Factory::get_instance_of 'ListProviders', response
   end
 
   def verify_order(order_id)
-    response = Request::get(
-        @client.deploy_uri+'charges/'+order_id+'/',
-        user: @client.get_user, pass: @client.get_pass
-    )
+    response = Request::get( @client.deploy_uri+'charges/'+order_id+'/', get_auth)
 
     Factory::get_instance_of 'CpOrderInfo', response
   end
@@ -54,11 +49,7 @@ class Service
         :app_client_version => order.app_client_version
     }
 
-    response = Request::post(
-        @client.deploy_uri+'charges/',
-        params,
-        user: @client.get_user, pass: @client.get_pass
-    )
+    response = Request::post(@client.deploy_uri+'charges/', params, get_auth)
 
     Factory::get_instance_of 'NewOrderInfo', response
   end
@@ -66,11 +57,7 @@ class Service
   def send_sms_instructions(number, order_id)
     params = {customer_phone: number}
 
-    response = Request::post(
-        @client.deploy_uri+'charges/'+order_id+'/sms/',
-        params,
-        user: @client.get_user, pass: @client.get_pass
-    )
+    response = Request::post(@client.deploy_uri+'charges/'+order_id+'/sms/', params, get_auth)
 
     Factory::get_instance_of 'SmsInfo', response
   end
@@ -78,11 +65,7 @@ class Service
   def create_webhook(url)
     params = {url: url}
 
-    response = Request::post(
-        @client.deploy_uri+'webhooks/stores/',
-        params,
-        user: @client.get_user, pass: @client.get_pass
-    )
+    response = Request::post(@client.deploy_uri+'webhooks/stores/', params, get_auth)
 
     Factory::get_instance_of 'Webhook', response
   end
@@ -90,30 +73,19 @@ class Service
   def update_webhook(webhook_id, new_url)
     params = {url: new_url}
 
-    response = Request::put(
-        @client.deploy_uri+'webhooks/stores/'+webhook_id+'/',
-        params,
-        user: @client.get_user, pass: @client.get_pass
-    )
+    response = Request::put(@client.deploy_uri+'webhooks/stores/'+webhook_id+'/', params, get_auth)
 
     Factory::get_instance_of 'Webhook', response
   end
 
   def delete_webhook(webhook_id)
-    response = Request::delete(
-        @client.deploy_uri+'webhooks/stores/'+webhook_id,
-        nil,
-        user: @client.get_user, pass: @client.get_pass
-    )
+    response = Request::delete(@client.deploy_uri+'webhooks/stores/'+webhook_id, nil, get_auth)
 
     Factory::get_instance_of 'Webhook', response
   end
 
   def list_webhooks
-    response = Request::get(
-        @client.deploy_uri+'webhooks/stores/',
-        user: @client.get_user, pass: @client.get_pass
-    )
+    response = Request::get(@client.deploy_uri+'webhooks/stores/', get_auth)
 
     Factory::get_instance_of 'ListWebhooks', response
   end

@@ -231,11 +231,10 @@ providers = client.api.list_providers
 ###### Prototipo del metodo get_providers()
 
 ```ruby
-# @param [Bolean] auth
-# @param [Float] limit
-# @param [Bolean] fetch
-# @return [Array]
-def list_providers(auth = false, limit = 0)
+# @param [float]  limit
+# @param [string] currency
+# @return [array]
+def list_providers(limit = 0, currency = 'MXN')
 end
 ```
 
