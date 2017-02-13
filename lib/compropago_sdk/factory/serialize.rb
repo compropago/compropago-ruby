@@ -39,7 +39,7 @@ class Serialize
 
       obj.fee_details = Serialize::fee_details(data['fee_details'])
       obj.order_info = Serialize::order_info(data['order_info'])
-      obj.customer.customer_name = Serialize::customer(data['customer'])
+      obj.customer = Serialize::customer(data['customer'])
 
       obj.captured = data['captured']
       obj.failure_message = data['failure_message']
@@ -89,13 +89,12 @@ class Serialize
       obj = FeeDetails.new
 
       obj.amount = data['amount'] ? data['amount'] : nil
+      obj.tax = data['tax'] ? data['tax'] : nil
+      obj.tax_percent = data['tax_percent'] ? data['tax_percent'] : nil
       obj.currency = data['currency'] ? data['currency'] : nil
       obj.type = data['type'] ? data['type'] : nil
       obj.description = data['description'] ? data['description'] : nil
-      obj.application = data['application'] ? data['application'] : nil
-      obj.tax_percent = data['tax_percent'] ? data['tax_percent'] : nil
       obj.amount_refunded = data['amount_refunded'] ? data['amount_refunded'] : nil
-      obj.tax = data['tax'] ? data['tax'] : nil
 
       return obj
     end
@@ -107,17 +106,17 @@ class Serialize
     else
       obj = InstructionDetails.new
 
-      obj.amount = data['amount'] ? data['amount'] : nil
-      obj.store = data['store'] ? data['store'] : nil
       obj.payment_amount = data['payment_amount'] ? data['payment_amount'] : nil
       obj.payment_store = data['payment_store'] ? data['payment_store'] : nil
-      obj.bank_account_holder_name = data['bank_account_holder_name'] ? data['bank_account_holder_name'] : nil
-      obj.bank_account_number = data['bank_accont_number'] ? data['bank_accont_number'] : nil
-      obj.bank_reference = data['bank_reference'] ? data['bank_reference'] : nil
+      obj.amount = data['amount'] ? data['amount'] : nil
+      obj.store = data['store'] ? data['store'] : nil
+      obj.bank_account_number = data['bank_account_number'] ? data['bank_account_number'] : nil
       obj.company_reference_name = data['company_reference_name'] ? data['company_reference_name'] : nil
       obj.company_reference_number = data['company_reference_number'] ? data['company_reference_number'] : nil
       obj.company_bank_number = data['company_bank_number'] ? data['company_bank_number'] : nil
       obj.order_reference_number = data['order_reference_number'] ? data['order_reference_number'] : nil
+      obj.bank_account_holder_name = data['bank_account_holder_name'] ? data['bank_account_holder_name'] : nil
+      obj.bank_reference = data['bank_reference'] ? data['bank_reference'] : nil
       obj.bank_name = data['bank_name'] ? data['bank_name'] : nil
 
       return obj
@@ -160,6 +159,7 @@ class Serialize
       obj.order_info = Serialize::order_info(data['order_info'])
       obj.fee_details = Serialize::fee_details(data['fee_details'])
       obj.instructions = Serialize::instructions(data['instructions'])
+      obj.api_version = data['api_version']
 
       return obj
     end
@@ -172,13 +172,28 @@ class Serialize
       obj = OrderInfo.new
 
       obj.order_id = data['order_id'] ? data['order_id'] : nil
-      obj.order_price = data['order_price'] ? data['order_price'] : nil
       obj.order_name = data['order_name'] ? data['order_name'] : nil
-      obj.payment_method = data['payment_method'] ? data['payment_method'] : nil
-      obj.store = data['store'] ? data['store'] : nil
-      obj.country = data['country'] ? data['country'] : nil
+      obj.order_price = data['order_price'] ? data['order_price'] : nil
       obj.image_url = data['image_url'] ? data['image_url'] : nil
-      obj.success_url = data['success_url'] ? data['success_url'] : nil
+      obj.exchange = Serialize::exchange(data['exchange'])
+
+      return obj
+    end
+  end
+
+  def self.exchange(data=nil)
+    if data.nil?
+      return Exchange.new
+    else
+      obj = Exchange.new
+
+      obj.rate = data['rate'] ? data['rate'] : nil
+      obj.request = data['request'] ? data['request'] : nil
+      obj.origin_amount = data['origin_amount'] ? data['origin_amount'] : nil
+      obj.final_amount = data['final_amount'] ? data['final_amount'] : nil
+      obj.origin_currency = data['origin_currency'] ? data['origin_currency'] : nil
+      obj.final_currency = data['final_currency'] ? data['final_currency'] : nil
+      obj.exchange_id = data['exchange_id'] ? data['exchange_id'] : nil
 
       return obj
     end
