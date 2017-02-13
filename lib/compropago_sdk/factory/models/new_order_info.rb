@@ -10,6 +10,7 @@ class NewOrderInfo
   attr_accessor :order_info
   attr_accessor :fee_details
   attr_accessor :instructions
+  attr_accessor :api_version
 
   def initialize
     @order_info = OrderInfo.new

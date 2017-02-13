@@ -18,7 +18,7 @@ class MyTest < MiniTest::Unit::TestCase
         order_name: 'M4 unit ruby',
         order_price: 123.45,
         customer_name: 'Eduardo Aguilar',
-        customer_email: 'eduardo.aguilar@compropago.com'
+        customer_email: 'aguilar@compropago.com'
     }
   end
 
@@ -28,7 +28,7 @@ class MyTest < MiniTest::Unit::TestCase
       obj = Client.new @publickey, @privatekey, @mode
       res = true
     rescue => ex
-      puts '====>>'+ex.message
+      puts 'Error: '+ex.message
     end
 
     assert res
@@ -42,7 +42,7 @@ class MyTest < MiniTest::Unit::TestCase
 
       res = evl.is_a? EvalAuthInfo
     rescue => ex
-      puts '====>>'+ex.message
+      puts 'Error: '+ex.message
     end
 
     assert res
@@ -56,7 +56,7 @@ class MyTest < MiniTest::Unit::TestCase
 
       res = (providers.is_a?(Array) && providers[0].is_a?(Provider))
     rescue => ex
-      puts '====>>'+ex.message
+      puts 'Error: '+ex.message
     end
 
     assert res
@@ -75,7 +75,7 @@ class MyTest < MiniTest::Unit::TestCase
         end
       end
     rescue => ex
-      puts '====>>'+ex.message
+      puts 'Error: '+ex.message
       res = false
     end
 
@@ -95,7 +95,7 @@ class MyTest < MiniTest::Unit::TestCase
         end
       end
     rescue => ex
-      puts '====>> '+ex.message
+      puts 'Error: '+ex.message
       res = false
     end
 
@@ -111,7 +111,7 @@ class MyTest < MiniTest::Unit::TestCase
 
       res = response.is_a? NewOrderInfo
     rescue => ex
-      puts '====>> '+ex.message
+      puts 'Error: '+ex.message
     end
     assert res
   end
@@ -123,13 +123,14 @@ class MyTest < MiniTest::Unit::TestCase
       time = Time.now.to_i + (6 * 60 * 60)
 
       @order_info[:expiration_time] = time
+      @order_info[:customer_email] = 'asd@asd.com'
 
       order = Factory::get_instance_of 'PlaceOrderInfo', @order_info
       response = obj.api.place_order order
 
       res = response.is_a?(NewOrderInfo) && (time == response.exp_date)
     rescue => ex
-      puts '====>> '+ex.message
+      puts 'Error: '+ex.message
     end
     assert res
   end
@@ -138,6 +139,9 @@ class MyTest < MiniTest::Unit::TestCase
     res = false
     begin
       obj   = Client.new @publickey, @privatekey, @mode
+
+      @order_info[:customer_email] = 'qwe@qwe.com'
+
       order = Factory::get_instance_of 'PlaceOrderInfo', @order_info
       resp  = obj.api.place_order order
       ver   = obj.api.verify_order resp.id
@@ -154,6 +158,9 @@ class MyTest < MiniTest::Unit::TestCase
     res = false
     begin
       obj   = Client.new @publickey, @privatekey, @mode
+
+      @order_info[:customer_email] = 'ert@ert.com'
+
       order = Factory::get_instance_of 'PlaceOrderInfo', @order_info
       resp  = obj.api.place_order order
       sms   = obj.api.send_sms_instructions @phone_number, resp.id
@@ -174,7 +181,7 @@ class MyTest < MiniTest::Unit::TestCase
 
       res = list.is_a?(Array) && list[0].is_a?(Webhook)
     rescue => ex
-      puts 'Eerror: '+ex.message
+      puts ex.message
     end
     assert res
   end
@@ -187,7 +194,7 @@ class MyTest < MiniTest::Unit::TestCase
 
       res = webhook.is_a? Webhook
     rescue => ex
-      puts 'Eerror: '+ex.message
+      puts ex.message
     end
     assert res
   end
@@ -201,7 +208,7 @@ class MyTest < MiniTest::Unit::TestCase
 
       res = webhook.is_a? Webhook
     rescue => ex
-      puts 'Eerror: '+ex.message
+      puts ex.message
     end
     assert res
   end
@@ -215,7 +222,7 @@ class MyTest < MiniTest::Unit::TestCase
 
       res = webhook.is_a? Webhook
     rescue => ex
-      puts 'Eerror: '+ex.message
+      puts ex.message
     end
     assert res
   end
