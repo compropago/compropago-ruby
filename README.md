@@ -6,7 +6,7 @@ La gema de `ComproPago Ruby SDK` le permite interactuar con el API de ComproPago
 También cuenta con los métodos necesarios para facilitar el desarrollo por medio de los servicios
 más utilizados (SDK).
 
-Con ComproPago puede recibir pagos en OXXO, 7Eleven y más tiendas en todo México.
+Con ComproPago puede recibir pagos en 7Eleven, Extra y más tiendas en todo México.
 
 [Registrarse en ComproPago](https://compropago.com)
 
