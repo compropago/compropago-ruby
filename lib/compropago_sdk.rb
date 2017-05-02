@@ -3,12 +3,11 @@ require 'openssl'
 require 'net/http'
 require 'json'
 require 'base64'
+require 'easy_request'
 
 require 'compropago_sdk/client'
 require 'compropago_sdk/service'
 
-require 'compropago_sdk/tools/http'
-require 'compropago_sdk/tools/request'
 require 'compropago_sdk/tools/validations'
 
 require 'compropago_sdk/factory/factory'

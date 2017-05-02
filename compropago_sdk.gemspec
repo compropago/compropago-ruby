@@ -12,9 +12,9 @@ Dir.glob('./lib/compropago_sdk/tools/*.rb').each do |archivo| li.push archivo en
 
 Gem::Specification.new do |spec|
   spec.name          = 'compropago_sdk'
-  spec.version       = '3.0.4'
-  spec.authors       = ['Eduardo Aguilar']
-  spec.email         = ['eduardo.aguilar@compropago.com']
+  spec.version       = '3.1.0'
+  spec.authors       = ['Eduardo Aguilar','Christian Aguirre']
+  spec.email         = ['eduardo.aguilar@compropago.com','christian@compropago.com']
 
   spec.summary       = %q{Gema para API ComproPago}
   spec.description   = %q{Provee los servicios de creacion de cargos verificacion etc.}
@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'minitest'
+  spec.add_dependency 'easy_request'
 end
