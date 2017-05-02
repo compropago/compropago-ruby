@@ -1,7 +1,7 @@
 class Validations
 
   def self.eval_auth(client)
-    response = Request::get(client.deploy_uri+'users/auth/', user: client.get_user, pass: client.get_pass)
+    response = EasyRequest::get(client.deploy_uri+'users/auth/', user: client.get_user, pass: client.get_pass)
     info = Factory.get_instance_of('EvalAuthInfo', response)
 
     if info.code == 200

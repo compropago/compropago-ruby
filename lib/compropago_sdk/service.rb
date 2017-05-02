@@ -19,13 +19,13 @@ class Service
       uri = uri+'&currency='+currency
     end
 
-    response = Request::get(uri, get_auth)
+    response = EasyRequest::get(uri, get_auth)
 
     Factory::get_instance_of 'ListProviders', response
   end
 
   def verify_order(order_id)
-    response = Request::get( @client.deploy_uri+'charges/'+order_id+'/', get_auth)
+    response = EasyRequest::get( @client.deploy_uri+'charges/'+order_id+'/', get_auth)
 
     Factory::get_instance_of 'CpOrderInfo', response
   end
@@ -49,7 +49,7 @@ class Service
         :app_client_version => order.app_client_version
     }
 
-    response = Request::post(@client.deploy_uri+'charges/', params, get_auth)
+    response = EasyRequest::post(@client.deploy_uri+'charges/', params, get_auth)
 
     Factory::get_instance_of 'NewOrderInfo', response
   end
@@ -57,7 +57,7 @@ class Service
   def send_sms_instructions(number, order_id)
     params = {customer_phone: number}
 
-    response = Request::post(@client.deploy_uri+'charges/'+order_id+'/sms/', params, get_auth)
+    response = EasyRequest::post(@client.deploy_uri+'charges/'+order_id+'/sms/', params, get_auth)
 
     Factory::get_instance_of 'SmsInfo', response
   end
@@ -65,7 +65,7 @@ class Service
   def create_webhook(url)
     params = {url: url}
 
-    response = Request::post(@client.deploy_uri+'webhooks/stores/', params, get_auth)
+    response = EasyRequest::post(@client.deploy_uri+'webhooks/stores/', params, get_auth)
 
     Factory::get_instance_of 'Webhook', response
   end
@@ -73,19 +73,19 @@ class Service
   def update_webhook(webhook_id, new_url)
     params = {url: new_url}
 
-    response = Request::put(@client.deploy_uri+'webhooks/stores/'+webhook_id+'/', params, get_auth)
+    response = EasyRequest::put(@client.deploy_uri+'webhooks/stores/'+webhook_id+'/', params, get_auth)
 
     Factory::get_instance_of 'Webhook', response
   end
 
   def delete_webhook(webhook_id)
-    response = Request::delete(@client.deploy_uri+'webhooks/stores/'+webhook_id, nil, get_auth)
+    response = EasyRequest::delete(@client.deploy_uri+'webhooks/stores/'+webhook_id, nil, get_auth)
 
     Factory::get_instance_of 'Webhook', response
   end
 
   def list_webhooks
-    response = Request::get(@client.deploy_uri+'webhooks/stores/', get_auth)
+    response = EasyRequest::get(@client.deploy_uri+'webhooks/stores/', get_auth)
 
     Factory::get_instance_of 'ListWebhooks', response
   end
