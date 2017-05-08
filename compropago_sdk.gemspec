@@ -12,7 +12,7 @@ Dir.glob('./lib/compropago_sdk/tools/*.rb').each do |archivo| li.push archivo en
 
 Gem::Specification.new do |spec|
   spec.name          = 'compropago_sdk'
-  spec.version       = '3.1.0'
+  spec.version       = '3.1.1'
   spec.authors       = ['Eduardo Aguilar','Christian Aguirre']
   spec.email         = ['eduardo.aguilar@compropago.com','christian@compropago.com']
 
@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
   spec.files         = li
 
   # Dependencias en desarrollo descargables de rubygems.org
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'minitest'
-  spec.add_dependency 'easy_request'
+  spec.add_development_dependency 'bundler', '~> 1.0'
+  spec.add_development_dependency 'rake', '~> 12.0'
+  spec.add_development_dependency 'minitest', '~> 5.10'
+  spec.add_dependency 'easy_request', '~> 0.0.2'
 end

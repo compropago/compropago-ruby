@@ -58,7 +58,7 @@ class NeworderTest < MiniTest::Unit::TestCase
     assert res
   end
 
-  def validate_order_info(order_info)
+  private def validate_order_info(order_info)
     if order_info.order_id == '' || order_info.order_id.nil?
       raise 'Error: order_info.order_id == '+order_info.order_id
     end
@@ -72,7 +72,7 @@ class NeworderTest < MiniTest::Unit::TestCase
     validate_exchange order_info.exchange
   end
 
-  def validate_exchange(exchange)
+  private def validate_exchange(exchange)
     unless exchange.origin_amount.is_a? Numeric
       raise 'Error: exchange.origin_amount == '+exchange.origin_amount.class
     end
