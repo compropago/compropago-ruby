@@ -141,7 +141,6 @@ class Service
   # FUNCTION: get real IP request
   # @return [String]
   private def get_ip
-    require 'socket'
-    return Socket.ip_address_list[4].ip_address
+    return Net::HTTP.get URI "https://api.ipify.org"
   end
 end
