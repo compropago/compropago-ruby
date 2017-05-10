@@ -11,14 +11,14 @@ class MyTest < MiniTest::Unit::TestCase
     @publickey = 'pk_test_638e8b14112423a086'
     @privatekey = 'sk_test_9c95e149614142822f'
     @mode = false
-    @phone_number = '5561463627'
+    @phone_number = '5546541385'
     @limit = 15000
     @order_info = {
         order_id: 123,
         order_name: 'M4 unit ruby',
-        order_price: 123.45,
-        customer_name: 'Eduardo Aguilar',
-        customer_email: 'aguilar@compropago.com'
+        order_price: 5,
+        customer_name: 'Christian Aguirre',
+        customer_email: 'christian@compropago.com'
     }
   end
 
