@@ -12,6 +12,10 @@ class PlaceOrderInfo
   attr_accessor :image_url
   attr_accessor :app_client_name
   attr_accessor :app_client_version
+  attr_accessor :latitude
+  attr_accessor :longitude
+  attr_accessor :cp
+  attr_accessor :customer_phone
 
   def initialize(
     order_id,
@@ -24,7 +28,11 @@ class PlaceOrderInfo
     expiration_time=nil,
     image_url='',
     app_client_name='sdk-ruby',
-    app_client_version=nil
+    app_client_version=nil,
+    latitude=nil,
+    longitude=nil,
+    cp=nil,
+    customer_phone=nil
   )
     @order_id = order_id
     @order_name = order_name
@@ -36,6 +44,10 @@ class PlaceOrderInfo
     @expiration_time = expiration_time
     @image_url = image_url
     @app_client_name = app_client_name
+    @latitude = latitude
+    @longitude = longitude
+    @cp = cp
+    @customer_phone = customer_phone
 
     if app_client_version.nil?
       @app_client_version = Client::VERSION
