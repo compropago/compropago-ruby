@@ -57,10 +57,7 @@ class Service
       image_url: order.image_url,
       app_client_name: order.app_client_name,
       app_client_version: order.app_client_version,
-      ip_address: get_ip()
     }
-
-    puts params
 
     response = EasyRequest::post(@client.deploy_uri+'charges/', params, get_auth())
 
@@ -118,29 +115,5 @@ class Service
 
     Factory::get_instance_of 'ListWebhooks', response
   end
-
-  # FUNCTION: send async glocation for an order
-  # @param order_id [String] id de la orden generada
-  # @param latitud  [Int]    latitud de localizacion
-  # @param longitud [Int]    longitud de localizacion
-  def send_glocation(order_id, latitud, longitud)
-    begin
-      data = {
-        latitud: latitud,
-        longitud: longitud,
-        order_id: order_id
-      }
-
-      response = EasyRequest.post(@client.deploy_uri+'glocation', data, get_auth())
-      puts response
-    rescue => exception
-      puts exception.message
-    end
-  end
-
-  # FUNCTION: get real IP request
-  # @return [String]
-  private def get_ip
-    return Net::HTTP.get URI "https://api.ipify.org"
-  end
+ 
 end

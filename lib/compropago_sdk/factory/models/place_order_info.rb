@@ -5,6 +5,7 @@ class PlaceOrderInfo
   attr_accessor :order_price
   attr_accessor :customer_name
   attr_accessor :customer_email
+  attr_accessor :customer_phone
   attr_accessor :payment_type
   attr_accessor :currency
   attr_accessor :expiration_time

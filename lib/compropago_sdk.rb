@@ -2,6 +2,7 @@ require 'openssl'
 
 require 'net/http'
 require 'json'
+require 'uri'
 require 'base64'
 require 'easy_request'
 

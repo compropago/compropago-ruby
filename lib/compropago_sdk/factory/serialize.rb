@@ -21,32 +21,29 @@ class Serialize
   end
 
   def self.cp_order_info(data=nil)
+    puts JSON.pretty_generate(data)
     if data.nil?
       return CpOrderInfo.new
     else
       obj = CpOrderInfo.new
 
       obj.id = data['id']
+      obj.short_id = data['short_id']
       obj.type = data['type']
       obj.object = data['object']
-      obj.created = data['created']
+      obj.created_at = data['created_at']
+      obj.accepted_at = data['accepted_at']
+      obj.expires_at = data['expires_at']
       obj.paid = data['paid']
       obj.amount = data['amount']
       obj.livemode = data['livemode']
       obj.currency = data['currency']
       obj.refunded = data['refunded']
       obj.fee = data['fee']
-
       obj.fee_details = Serialize::fee_details(data['fee_details'])
       obj.order_info = Serialize::order_info(data['order_info'])
       obj.customer = Serialize::customer(data['customer'])
-
-      obj.captured = data['captured']
-      obj.failure_message = data['failure_message']
-      obj.failure_code = data['failure_code']
-      obj.amount_refunded = data['amount_refunded']
-      obj.description = data['description']
-      obj.dispute = data['dispute']
+      obj.api_version = data['']
 
       return obj
     end
@@ -88,13 +85,12 @@ class Serialize
     else
       obj = FeeDetails.new
 
-      obj.amount = data['amount'] ? data['amount'] : nil
-      obj.tax = data['tax'] ? data['tax'] : nil
-      obj.tax_percent = data['tax_percent'] ? data['tax_percent'] : nil
-      obj.currency = data['currency'] ? data['currency'] : nil
-      obj.type = data['type'] ? data['type'] : nil
-      obj.description = data['description'] ? data['description'] : nil
-      obj.amount_refunded = data['amount_refunded'] ? data['amount_refunded'] : nil
+      obj.amount = data['amount']
+      obj.currency = data['currency']
+      obj.type = data['type']
+      obj.application = data['application']
+      obj.amount_refunded = data['amount_refunded']
+      obj.tax = data['tax']
 
       return obj
     end
@@ -144,6 +140,7 @@ class Serialize
   end
 
   def self.new_order_info(data=nil)
+    puts JSON.pretty_generate(data)
     if data.nil?
       return NewOrderInfo.new
     else
@@ -151,13 +148,20 @@ class Serialize
 
       obj.id = data['id']
       obj.short_id = data['short_id']
+      obj.type = data['type']
       obj.object = data['object']
-      obj.status = data['status']
-      obj.created = data['created']
-      obj.exp_date = data['exp_date']
-      obj.live_mode = data['live_mode']
-      obj.order_info = Serialize::order_info(data['order_info'])
+      obj.created_at = data['created_at']
+      obj.accepted_at = data['accepted_at']
+      obj.expires_at = data['expires_at']
+      obj.paid = data['paid']
+      obj.amount = data['amount']
+      obj.livemode = data['livemode']
+      obj.currency = data['currency']
+      obj.refunded = data['refunded']
+      obj.fee = data['fee']
       obj.fee_details = Serialize::fee_details(data['fee_details'])
+      obj.order_info = Serialize::order_info(data['order_info'])
+      obj.customer = Serialize::customer(data['customer'])
       obj.instructions = Serialize::instructions(data['instructions'])
       obj.api_version = data['api_version']
 
@@ -171,10 +175,15 @@ class Serialize
     else
       obj = OrderInfo.new
 
-      obj.order_id = data['order_id'] ? data['order_id'] : nil
-      obj.order_name = data['order_name'] ? data['order_name'] : nil
-      obj.order_price = data['order_price'] ? data['order_price'] : nil
-      obj.image_url = data['image_url'] ? data['image_url'] : nil
+      obj.order_id = data['order_id']
+      obj.order_price = data['order_price']
+      obj.order_name = data['order_name']
+      obj.payment_method = data['payment_method']
+      obj.store = data['store']
+      obj.country = data['country']
+      obj.image_url = data['image_url']
+      obj.success_url = data['success_url']
+      obj.fialed_url = data['failed_url']
       obj.exchange = Serialize::exchange(data['exchange'])
 
       return obj
