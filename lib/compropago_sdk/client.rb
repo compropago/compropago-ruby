@@ -3,7 +3,7 @@ class Client
   API_LIVE_URI = 'https://api.compropago.com/v1/'
   API_SANDBOX_URI = 'https://api.compropago.com/v1/'
 
-  VERSION = '3.0.4'
+  VERSION = '3.1.2.1'
 
   attr_accessor :publickey, :privatekey, :live, :deploy_uri, :api
 

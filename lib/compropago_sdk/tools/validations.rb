@@ -1,5 +1,12 @@
 class Validations
 
+  # Obtain auth info
+  #
+  # @param [Client] client
+  # @return [EvalAuthInfo]
+  # @raise [Error]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def self.eval_auth(client)
     response = EasyRequest::get(client.deploy_uri+'users/auth/', user: client.get_user, pass: client.get_pass)
     info = Factory.get_instance_of('EvalAuthInfo', response)
@@ -11,6 +18,13 @@ class Validations
     end
   end
 
+  # Validate client instance
+  #
+  # @param [Client] client
+  # @return [bool]
+  # @raise [Error]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def self.validate_gateway(client)
     unless client
       raise 'Client object is not valid'
@@ -18,7 +32,7 @@ class Validations
 
     client_mode = client.live
 
-    auth_info = Validations::eval_auth client
+    auth_info = Validations::eval_auth(client)
 
     if auth_info.mode_key != auth_info.livemode
       raise 'Keys are diferent of store mode.'
@@ -31,6 +45,8 @@ class Validations
     if client_mode != auth_info.mode_key
       raise 'Client mode is diferent of keys mode'
     end
+
+    return true
   end
 
 end

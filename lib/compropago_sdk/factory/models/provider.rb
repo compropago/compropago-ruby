@@ -10,5 +10,6 @@ class Provider
   attr_accessor :image_large
   attr_accessor :transaction_limit
   attr_accessor :rank
+  attr_accessor :commission
 
 end

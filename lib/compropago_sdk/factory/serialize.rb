@@ -14,7 +14,7 @@ class Serialize
           data[:currency] ? data[:currency] : 'MXN',
           data[:expiration_time] ? data[:expiration_time] : nil,
           data[:image_url] ? data[:image_url] : '',
-          data[:app_client_name] ? data[:app_client_name] : 'sdk-ruby',
+          data[:app_client_name] ? data[:app_client_name] : 'sdkruby',
           data[:app_client_version] ? data[:app_client_version] : Client::VERSION,
       )
     end
@@ -215,6 +215,7 @@ class Serialize
       obj.image_large = data['image_large']
       obj.transaction_limit = data['transaction_limit']
       obj.rank = data['rank']
+      obj.commission = data['commission']
 
       return obj
     end
