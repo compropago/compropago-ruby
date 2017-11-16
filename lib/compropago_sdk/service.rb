@@ -1,18 +1,27 @@
 class Service
-  # FUNCTION: constructor
+  # Constructor
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def initialize(client)
     @client = client
   end
 
-  # FUNCTION: get auth params
+  # Get auth params
+  #
   # @return [Hash] 
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def get_auth
     { :user => @client.get_user, :pass => @client.get_pass }
   end
 
-  # FUNCTION: list providers by limit and currency
-  # @param limit    [Float]  limite de transaccion de los proveedores
-  # @param currency [String] 
+  # List providers by limit and currency
+  #
+  # @param [float] limit      limite de transaccion de los proveedores
+  # @param [string] currency
+  # @return [Array]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def list_providers(limit=0, currency='MXN')
     uri = @client.deploy_uri+'providers/'
 
@@ -25,21 +34,26 @@ class Service
     end
 
     response = EasyRequest::get(uri, get_auth())
-
-    Factory::get_instance_of 'ListProviders', response
+    Factory::get_instance_of('ListProviders', response)
   end
 
-  # FUNCTION: veridy order by unique_id
+  # Verify order by unique_id
+  #
+  # @param [string] order_id
   # @return [CpOrderInfo]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def verify_order(order_id)
     response = EasyRequest::get( @client.deploy_uri+'charges/'+order_id+'/', get_auth())
-
-    Factory::get_instance_of 'CpOrderInfo', response
+    Factory::get_instance_of('CpOrderInfo', response)
   end
 
-  # FUNCTION: place order 
-  # @param order [PlaceOrderInfo]
+  # Place order 
+  #
+  # @param [PlaceOrderInfo] order
   # @return [NewOrderInfo]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def place_order(order)
     unless order.is_a?(PlaceOrderInfo)
       raise 'Order object is not valid'
@@ -56,91 +70,69 @@ class Service
       expiration_time: order.expiration_time,
       image_url: order.image_url,
       app_client_name: order.app_client_name,
-      app_client_version: order.app_client_version,
-      ip_address: get_ip()
+      app_client_version: order.app_client_version
     }
 
-    puts params
-
     response = EasyRequest::post(@client.deploy_uri+'charges/', params, get_auth())
-
-    Factory::get_instance_of 'NewOrderInfo', response
+    Factory::get_instance_of('NewOrderInfo', response)
   end
 
-  # FUNCTION: send sms of an order
-  # @param number   [String]  phone number
-  # @param order_id [String]  id de la orden generada
+  # Send sms of an order
+  #
+  # @param [string] number    phone number
+  # @param [string] order_id  id de la orden generada
   # @return [SmsInfo]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def send_sms_instructions(number, order_id)
     params = {customer_phone: number}
-
     response = EasyRequest::post(@client.deploy_uri+'charges/'+order_id+'/sms/', params, get_auth())
-
-    Factory::get_instance_of 'SmsInfo', response
+    Factory::get_instance_of('SmsInfo', response)
   end
 
-  # FUNCTION: creatre webhook
-  # @param url [String] url for the new webhook
+  # Creatre webhook
+  #
+  # @param [string] url
   # @return [Webhook]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def create_webhook(url)
     params = {url: url}
-
     response = EasyRequest::post(@client.deploy_uri+'webhooks/stores/', params, get_auth())
-
-    Factory::get_instance_of 'Webhook', response
+    Factory::get_instance_of('Webhook', response)
   end
 
-  # FUNCTION: update registered webhook
-  # @param webhook_id [String] registered webhook ID
-  # @param new_url    [String] new url for the webhook
-  # @return  [Webhook]
+  # Update registered webhook
+  #
+  # @param [string] webhook_id  registered webhook ID
+  # @param [string] new_url     new url for the webhook
+  # @return [Webhook]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def update_webhook(webhook_id, new_url)
     params = {url: new_url}
-
     response = EasyRequest::put(@client.deploy_uri+'webhooks/stores/'+webhook_id+'/', params, get_auth())
-
-    Factory::get_instance_of 'Webhook', response
+    Factory::get_instance_of('Webhook', response)
   end
 
-  # FUNCTION: delete webhook
-  # @param webhook_id [String] registered webhook ID
+  # Delete webhook
+  #   
+  # @param [string] webhook_id registered webhook ID
   # @param [Webhook]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def delete_webhook(webhook_id)
     response = EasyRequest::delete(@client.deploy_uri+'webhooks/stores/'+webhook_id, nil, get_auth())
-
-    Factory::get_instance_of 'Webhook', response
+    Factory::get_instance_of('Webhook', response)
   end
 
-  # FUNCTION: get list registered webhooks
-  # @return [ListWebhooks]
+  # Get list registered webhooks
+  #
+  # @return [Array]
+  #
+  # @author Eduardo Aguilar <dante.aguilar41@gmail.com>
   def list_webhooks
     response = EasyRequest::get(@client.deploy_uri+'webhooks/stores/', get_auth())
-
-    Factory::get_instance_of 'ListWebhooks', response
-  end
-
-  # FUNCTION: send async glocation for an order
-  # @param order_id [String] id de la orden generada
-  # @param latitud  [Int]    latitud de localizacion
-  # @param longitud [Int]    longitud de localizacion
-  def send_glocation(order_id, latitud, longitud)
-    begin
-      data = {
-        latitud: latitud,
-        longitud: longitud,
-        order_id: order_id
-      }
-
-      response = EasyRequest.post(@client.deploy_uri+'glocation', data, get_auth())
-      puts response
-    rescue => exception
-      puts exception.message
-    end
-  end
-
-  # FUNCTION: get real IP request
-  # @return [String]
-  private def get_ip
-    return Net::HTTP.get URI "https://api.ipify.org"
+    Factory::get_instance_of('ListWebhooks', response)
   end
 end
