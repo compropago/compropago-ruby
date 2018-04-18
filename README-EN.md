@@ -32,19 +32,19 @@ You can get the repository
 git clone https://github.com/compropago/compropago-ruby.git
 After the download of the gem code, unzip the downloaded file and enter the resulting folder. In a terminal with the following commands:
 
-# Uninstall any previous version of the gem
+### Uninstall any previous version of the gem
 sudo gem uninstall compropago *
 
-# Generation of the new compilation of the gem
+### Generation of the new compilation of the gem
 gem build compropago.gemspec
 
-# Installation of the new compiled
+### Installation of the new compiled
 sudo gem install compropago * .gem
 
 ## Basic Use Guide
 You must have an active CompraPago account.
 
-General
+### General
 To be able to make use of the library it is necessary to include the main library of the gem
 
 require 'compropago_sdk'
@@ -70,7 +70,7 @@ client = Client.new (
 
 > Consult the Ruby bookstore of ComproPago to learn more about its capabilities, configurations and methods.
 
-### Called to services by SDK
+#### Called to services by SDK
 To be able to use the ComproPago services, you just have to call the methods contained in the api property of the **client** variable as shown below.
 
 #### Base methods of the SDK
@@ -238,7 +238,7 @@ To delete a webhook, you must call the **delete_webhook** method that is hosted 
 deleted_webhook = client.api.delete_webhook webhook.id
 ```
 
-##### Prototype of the delete_webhook () method
+##### Prototype of the delete_webhook() method
 
 ```ruby
 # @param [String] id
@@ -255,7 +255,7 @@ To obtain the list of webhooks registered in an account, you must call the **lis
 webhooks = client.api.list_webhooks
 ```
 
-##### Prototype of the list_webhook () method
+##### Prototype of the list_webhook() method
 ```ruby
 # @return [Array]
 def list_webhooks
