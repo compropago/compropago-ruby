@@ -1,5 +1,5 @@
 
-ComproPago Ruby SDK
+#ComproPago Ruby SDK
 
 ## Description
 
