@@ -1,6 +1,6 @@
 # ComproPago Ruby SDK
 
-[English Version](#english-version)
+[English Version](README-EN.md)
 
 ## Descripción
 
