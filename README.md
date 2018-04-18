@@ -1,5 +1,7 @@
 # ComproPago Ruby SDK
 
+[English Version](#english-version)
+
 ## Descripción
 
 La gema de `ComproPago Ruby SDK` le permite interactuar con el API de ComproPago en su aplicación.
