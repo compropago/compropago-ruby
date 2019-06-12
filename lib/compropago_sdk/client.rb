@@ -1,9 +1,8 @@
 class Client
 
-  API_LIVE_URI = 'https://api.compropago.com/v1/'
-  API_SANDBOX_URI = 'https://api.compropago.com/v1/'
+  API_URL = 'https://api.compropago.com/v1/'
 
-  VERSION = '3.0.4'
+  VERSION = '4.0.1'
 
   attr_accessor :publickey, :privatekey, :live, :deploy_uri, :api
 
@@ -11,13 +10,7 @@ class Client
     @publickey = publickey
     @privatekey = privatekey
     @live = live
-
-    if live
-      @deploy_uri = API_LIVE_URI
-    else
-      @deploy_uri = API_SANDBOX_URI
-    end
-
+    @deploy_uri = API_URL
     @api = Service.new self
   end
 
