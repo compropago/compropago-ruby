@@ -25,7 +25,7 @@ task :ipaddress do
   order_info = {
     :order_id => 12,
     :order_name => 'M4 php sdk',
-    :order_price => 123.45,
+    :order_price => rand(5..5000),
     :customer_name => 'Eduardo',
     :customer_email => 'asd@asd.com',
     :payment_type => 'SEVEN_ELEVEN',
